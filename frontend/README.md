@@ -1,0 +1,39 @@
+# Frontend (React + Vite)
+
+This is the frontend for the portfolio + blog system. It uses React with Vite.
+
+## Requirements
+
+- Node.js 18+ (recommended)
+- npm
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Run the dev server
+
+```bash
+npm run dev
+```
+
+Vite will print the local URL (usually http://localhost:5173).
+
+## Production build
+
+```bash
+npm run build
+```
+
+## Preview production build
+
+```bash
+npm run preview
+```
+
+## Project notes
+
+- Static content lives in `src/data/siteData.json`.
+- Dynamic content is fetched from the Django API (see backend README).
