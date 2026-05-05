@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework import generics, permissions
 
-# Create your views here.
+from .models import ContactMessage
+from .serializers import ContactMessageSerializer
+
+
+class ContactCreateView(generics.CreateAPIView):
+	queryset = ContactMessage.objects.all()
+	serializer_class = ContactMessageSerializer
+	permission_classes = [permissions.AllowAny]
+
+
+class ContactListView(generics.ListAPIView):
+	queryset = ContactMessage.objects.all()
+	serializer_class = ContactMessageSerializer
+	permission_classes = [permissions.IsAdminUser]
