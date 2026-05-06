@@ -1,0 +1,168 @@
+{
+  "name": "Aarav Patel",
+  "title": "Full Stack Developer",
+  "location": "Ahmedabad, India",
+  "availability": "Open to full-time roles and selective freelance",
+  "intro": "I design and ship reliable full-stack products with modern React and Django, focused on performance, clarity, and clean UX.",
+  "summary": "I am a product-minded developer who enjoys translating complex requirements into elegant, scalable web experiences. I work across the stack, partnering with founders and teams to ship MVPs, dashboards, and content platforms that are fast, secure, and easy to iterate.",
+  "stats": [
+    { "label": "Years Experience", "value": "3+" },
+    { "label": "Projects Shipped", "value": "18" },
+    { "label": "Clients Served", "value": "12" },
+    { "label": "Avg. Launch Time", "value": "4 weeks" }
+  ],
+  "highlights": [
+    "API-first architecture",
+    "Accessible UI",
+    "Performance tuning",
+    "Clear documentation"
+  ],
+  "skills": {
+    "Frontend": ["React", "Vite", "Tailwind", "Framer Motion", "Responsive UI"],
+    "Backend": ["Django", "Django REST Framework", "Node.js", "REST APIs", "Auth"],
+    "Database": ["PostgreSQL", "SQLite", "Prisma", "Redis"],
+    "DevOps": ["Docker", "CI/CD", "Render", "Vercel"],
+    "Design": ["Figma", "Design Systems", "UX Writing"]
+  },
+  "services": [
+    {
+      "title": "Full-Stack MVPs",
+      "description": "Rapidly ship MVPs with clean architecture, ready for growth and iteration."
+    },
+    {
+      "title": "Productized Dashboards",
+      "description": "Build internal tools and analytics dashboards with secure role-based access."
+    },
+    {
+      "title": "Content Platforms",
+      "description": "CMS-driven platforms with performant frontends and easy admin workflows."
+    }
+  ],
+  "featuredProjects": [
+    {
+      "title": "InsightHub Analytics",
+      "tag": "SaaS Platform",
+      "description": "A multi-tenant analytics platform with custom reports, alerts, and team workspaces.",
+      "tech_stack": ["React", "Django", "PostgreSQL"],
+      "github_link": "https://github.com/example",
+      "live_link": "https://example.com",
+      "image_url": "https://example.com/project-hero.png",
+      "featured": true,
+      "display_order": 1,
+      "created_at": "2026-04-12T10:30:00Z"
+    },
+    {
+      "title": "Creator Portfolio CMS",
+      "tag": "Content System",
+      "description": "A headless CMS for creators with markdown editing, SEO tooling, and previews.",
+      "tech_stack": ["Vite", "DRF", "Cloudinary"],
+      "github_link": "https://github.com/example",
+      "live_link": "https://example.com",
+      "image_url": "https://example.com/project-cms.png",
+      "featured": true,
+      "display_order": 2,
+      "created_at": "2026-03-21T14:10:00Z"
+    },
+    {
+      "title": "Ops Metrics Dashboard",
+      "tag": "Internal Tool",
+      "description": "An operational dashboard for monitoring service health, SLAs, and incidents.",
+      "tech_stack": ["React", "Django", "Redis"],
+      "github_link": "https://github.com/example",
+      "live_link": "https://example.com",
+      "image_url": "",
+      "featured": false,
+      "display_order": 3,
+      "created_at": "2026-02-02T09:15:00Z"
+    }
+  ],
+  "blogPosts": [
+    {
+      "title": "Designing APIs for fast frontend delivery",
+      "slug": "designing-apis",
+      "excerpt": "Build APIs that are predictable, fast to consume, and stable in production.",
+      "content": "## Designing APIs\n\nBuild APIs that are predictable, fast to consume, and stable in production.",
+      "date": "2026-04-12",
+      "created_at": "2026-04-12T08:00:00Z",
+      "category": "backend"
+    },
+    {
+      "title": "The quiet power of UX writing",
+      "slug": "ux-writing",
+      "excerpt": "Small words can remove friction and increase trust.",
+      "content": "## UX writing\n\nSmall words can remove friction and increase trust.",
+      "date": "2026-03-21",
+      "created_at": "2026-03-21T09:30:00Z",
+      "category": "product"
+    },
+    {
+      "title": "What I learned shipping a portfolio in 10 days",
+      "slug": "portfolio-learnings",
+      "excerpt": "A short reflection on scope, design, and delivery.",
+      "content": "## Shipping fast\n\nA short reflection on scope, design, and delivery.",
+      "date": "2026-02-04",
+      "created_at": "2026-02-04T07:45:00Z",
+      "category": "career"
+    },
+    {
+      "title": "Database indexing for real-world Django apps",
+      "slug": "django-indexing",
+      "excerpt": "Add indexes where query patterns are stable and frequent. Measure before and after.",
+      "content": "## Indexing\n\nAdd indexes where query patterns are stable and frequent. Measure before and after.",
+      "date": "2026-01-18",
+      "created_at": "2026-01-18T11:15:00Z",
+      "category": "backend"
+    },
+    {
+      "title": "Designing dashboards that teams actually use",
+      "slug": "useful-dashboards",
+      "excerpt": "Start with decisions, then back into the metrics that support them.",
+      "content": "## Dashboards\n\nStart with decisions, then back into the metrics that support them.",
+      "date": "2025-12-10",
+      "created_at": "2025-12-10T15:20:00Z",
+      "category": "product"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Full Stack Developer",
+      "company": "Freelance",
+      "period": "2023 - Present",
+      "details": [
+        "Delivered 10+ end-to-end web apps with React + Django.",
+        "Built reusable UI libraries to speed up project delivery.",
+        "Optimized API performance and improved page speed scores."
+      ]
+    },
+    {
+      "role": "Frontend Developer",
+      "company": "Studio Loop",
+      "period": "2022 - 2023",
+      "details": [
+        "Led UI implementation for a SaaS onboarding revamp.",
+        "Collaborated with design to build a consistent component system.",
+        "Introduced testing workflows that reduced regression issues."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. in Computer Science",
+      "school": "Gujarat University",
+      "period": "2020 - 2024"
+    }
+  ],
+  "contact": {
+    "email": "hello@aarav.dev",
+    "phone": "+91 99999 88888",
+    "location": "Ahmedabad, India",
+    "cta": "Tell me about your product idea, and I will reply within 24 hours."
+  },
+  "social": [
+    { "label": "GitHub", "url": "https://github.com/example" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/example" },
+    { "label": "Twitter", "url": "https://twitter.com/example" },
+    { "label": "Email", "url": "mailto:hello@aarav.dev" }
+  ],
+  "resumeUrl": "https://example.com/resume.pdf"
+}
