@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --ink: #0f1a1f;
-  --ink-soft: #39464d;
-  --muted: #5f6b73;
-  --paper: #f7f4ef;
-  --paper-strong: #efe9e0;
-  --edge: #e2d9ce;
-  --accent: #d9654a;
-  --accent-soft: rgba(217, 101, 74, 0.14);
-  --accent-strong: #12343b;
-  --shadow: 0 20px 40px rgba(15, 26, 31, 0.12);
+  --ink: #0e1418;
+  --ink-soft: #2e3a40;
+  --muted: #58626a;
+  --paper: #f6f2ed;
+  --paper-strong: #efe7dd;
+  --edge: #ded5c9;
+  --accent: #ce6a4a;
+  --accent-soft: rgba(206, 106, 74, 0.16);
+  --accent-strong: #1b3c44;
+  --shadow: 0 30px 60px rgba(15, 26, 31, 0.12);
+  --glass: rgba(246, 242, 237, 0.82);
 
   --sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
   --heading: 'Space Grotesk', 'Segoe UI', sans-serif;
@@ -22,6 +23,20 @@
   -webkit-font-smoothing: antialiased;
 }
 
+[data-theme='dark'] {
+  --ink: #f4f1ec;
+  --ink-soft: #d9d2c9;
+  --muted: #b0a79d;
+  --paper: #0f1113;
+  --paper-strong: #181b1f;
+  --edge: #2a2f35;
+  --accent: #e27f5f;
+  --accent-soft: rgba(226, 127, 95, 0.18);
+  --accent-strong: #f4c4a6;
+  --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  --glass: rgba(18, 20, 24, 0.86);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -29,10 +44,11 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 10% 10%, rgba(217, 101, 74, 0.12), transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(18, 52, 59, 0.12), transparent 45%),
+    radial-gradient(circle at 10% 10%, rgba(206, 106, 74, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(27, 60, 68, 0.14), transparent 45%),
     var(--paper);
   color: var(--ink-soft);
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 img {

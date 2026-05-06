@@ -4,8 +4,7 @@ import { ENABLE_FALLBACK, fetchProjects } from '../services/api.js'
 
 function Projects() {
   const { featuredProjects = [] } = siteData
-  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
-  const fallbackProjects = fallbackEnabled ? featuredProjects : []
+  const fallbackProjects = ENABLE_FALLBACK ? featuredProjects : []
   const [projects, setProjects] = useState([])
   const [hasError, setHasError] = useState(false)
 

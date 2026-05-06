@@ -21,6 +21,18 @@ const getExcerpt = (post) => {
 
 const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
 
+const getReadTime = (post) => {
+  if (!post.content) {
+    return null
+  }
+  const words = post.content.trim().split(/\s+/).filter(Boolean).length
+  if (!words) {
+    return null
+  }
+  const minutes = Math.max(1, Math.round(words / 220))
+  return `${minutes} min read`
+}
+
 const formatCategory = (category) => {
   if (!category) {
     return 'Blog'
@@ -90,11 +102,14 @@ function BlogDetail() {
         <p className="section-eyebrow">{formatCategory(post.category)}</p>
         <h1>{post.title}</h1>
         <p className="lead">{getExcerpt(post)}</p>
-        <span className="muted">{getDateLabel(post)}</span>
+        <div className="article-meta">
+          <span className="muted">{getDateLabel(post)}</span>
+          {getReadTime(post) ? <span className="muted">{getReadTime(post)}</span> : null}
+        </div>
       </header>
 
       <section className="page-section">
-        <div className="card markdown-content">
+        <div className="card markdown-content article-body">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post.content ? post.content.replace(/\\n/g, '\n') : ''}
           </ReactMarkdown>

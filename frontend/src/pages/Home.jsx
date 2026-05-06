@@ -53,9 +53,8 @@ function Home() {
     blogPosts = [],
   } = siteData
 
-  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
-  const fallbackProjects = fallbackEnabled ? pickFeaturedProjects(featuredProjects) : []
-  const fallbackPosts = fallbackEnabled ? blogPosts.slice(0, 3) : []
+  const fallbackProjects = ENABLE_FALLBACK ? pickFeaturedProjects(featuredProjects) : []
+  const fallbackPosts = ENABLE_FALLBACK ? blogPosts.slice(0, 3) : []
 
   const [projectItems, setProjectItems] = useState([])
   const [postItems, setPostItems] = useState([])

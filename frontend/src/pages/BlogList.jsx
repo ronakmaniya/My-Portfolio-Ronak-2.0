@@ -39,8 +39,7 @@ const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
 function BlogList() {
   const [categories, setCategories] = useState([])
   const [hasError, setHasError] = useState(false)
-  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
-  const fallbackCategories = fallbackEnabled && siteData.blogPosts?.length
+  const fallbackCategories = ENABLE_FALLBACK && siteData.blogPosts?.length
     ? groupPostsByCategory(siteData.blogPosts)
     : []
 
@@ -85,10 +84,13 @@ function BlogList() {
               .filter((category) => category.posts && category.posts.length > 0)
               .map((category) => (
                 <div key={category.slug} className="category-block">
-                  <h2>{category.name}</h2>
+                  <div className="category-header">
+                    <h2>{category.name}</h2>
+                    <span className="category-count">{category.posts.length} posts</span>
+                  </div>
                   <div className="grid-3">
                     {category.posts.map((post) => (
-                      <article key={post.slug} className="card">
+                      <article key={post.slug} className="card blog-card">
                         <p className="tag">{category.name}</p>
                         <h3>{post.title}</h3>
                         <p>{getExcerpt(post)}</p>

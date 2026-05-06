@@ -1,7 +1,7 @@
 import siteData from '../data/siteData.json'
 
 function About() {
-  const { summary, highlights, experience, education, skills } = siteData
+  const { summary, highlights, experience, education, skills, stats } = siteData
 
   return (
     <div className="page">
@@ -11,19 +11,37 @@ function About() {
         <p className="lead">{summary}</p>
       </header>
 
-      <section className="page-section">
-        <h2>Highlights</h2>
-        <div className="pill-row">
-          {highlights.map((item) => (
-            <span key={item} className="pill">
-              {item}
-            </span>
-          ))}
+      <section className="page-section about-grid">
+        <div className="card about-panel">
+          <h2>Highlights</h2>
+          <p className="muted">How I like to collaborate and deliver.</p>
+          <div className="pill-row">
+            {highlights.map((item) => (
+              <span key={item} className="pill">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="card about-panel">
+          <h2>Track record</h2>
+          <p className="muted">A quick snapshot of recent outcomes.</p>
+          <div className="stat-grid about-stats">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat">
+                <p className="stat-value">{stat.value}</p>
+                <p className="stat-label">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="page-section">
-        <h2>Core skills</h2>
+        <div className="section-heading">
+          <p className="section-eyebrow">Skills</p>
+          <h2>Core skills and trusted tools.</h2>
+        </div>
         <div className="grid-3">
           {Object.entries(skills).map(([group, items]) => (
             <div key={group} className="card">
@@ -39,7 +57,10 @@ function About() {
       </section>
 
       <section className="page-section">
-        <h2>Experience</h2>
+        <div className="section-heading">
+          <p className="section-eyebrow">Experience</p>
+          <h2>Teams, timelines, and outcomes.</h2>
+        </div>
         <div className="timeline">
           {experience.map((role) => (
             <div key={role.company} className="timeline-item">
@@ -59,7 +80,10 @@ function About() {
       </section>
 
       <section className="page-section">
-        <h2>Education</h2>
+        <div className="section-heading">
+          <p className="section-eyebrow">Education</p>
+          <h2>Foundations and formal learning.</h2>
+        </div>
         <div className="grid-2">
           {education.map((item) => (
             <div key={item.school} className="card">
