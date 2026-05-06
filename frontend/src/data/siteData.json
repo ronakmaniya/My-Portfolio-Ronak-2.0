@@ -1,79 +1,84 @@
 {
-  "name": "Aarav Patel",
-  "title": "Full Stack Developer",
-  "location": "Ahmedabad, India",
-  "availability": "Open to full-time roles and selective freelance",
-  "intro": "I design and ship reliable full-stack products with modern React and Django, focused on performance, clarity, and clean UX.",
-  "summary": "I am a product-minded developer who enjoys translating complex requirements into elegant, scalable web experiences. I work across the stack, partnering with founders and teams to ship MVPs, dashboards, and content platforms that are fast, secure, and easy to iterate.",
+  "name": "Ronak Maniya",
+  "title": "Full Stack Developer | API & Systems",
+  "location": "Bhavnagar, India",
+  "availability": "Open to full stack internships and full-time roles",
+  "intro": "Full stack developer experienced in Django, Spring Boot, .NET Core, and MERN. I design secure REST APIs, build reliable services, and ship complete web applications.",
+  "summary": "I focus on backend engineering with strong problem-solving skills in data structures and algorithms, while also building clean, responsive UIs. I deliver scalable APIs, solid authentication, and end-to-end product features with maintainable architecture.",
   "stats": [
     {
-      "label": "Years Experience",
-      "value": "3+"
+      "label": "Projects Built",
+      "value": "7+"
     },
     {
-      "label": "Projects Shipped",
-      "value": "18"
+      "label": "Hackathons Won",
+      "value": "1"
     },
     {
-      "label": "Clients Served",
-      "value": "12"
+      "label": "Primary Stack",
+      "value": "Full Stack"
     },
     {
-      "label": "Avg. Launch Time",
-      "value": "4 weeks"
+      "label": "CGPA",
+      "value": "7.68"
     }
   ],
   "highlights": [
-    "API-first architecture",
-    "Accessible UI",
-    "Performance tuning",
-    "Clear documentation"
+    "REST API design and documentation",
+    "JWT and session authentication",
+    "Relational and NoSQL data modeling",
+    "Full-stack delivery"
   ],
   "skills": {
     "Frontend": [
       "React",
-      "Vite",
-      "Tailwind",
-      "Framer Motion",
-      "Responsive UI"
+      "JavaScript",
+      "HTML",
+      "CSS"
     ],
     "Backend": [
       "Django",
-      "Django REST Framework",
+      "Flask",
+      "Spring Boot",
+      ".NET Core",
       "Node.js",
-      "REST APIs",
-      "Auth"
+      "Express.js",
+      "REST APIs"
     ],
     "Database": [
-      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
       "SQLite",
-      "Prisma",
-      "Redis"
+      "SQL Server",
+      "PostgreSQL"
     ],
-    "DevOps": [
-      "Docker",
-      "CI/CD",
-      "Render",
-      "Vercel"
+    "Tools": [
+      "Git",
+      "GitHub",
+      "Postman",
+      "XAMPP",
+      "phpMyAdmin"
     ],
-    "Design": [
-      "Figma",
-      "Design Systems",
-      "UX Writing"
+    "Concepts": [
+      "API design and testing",
+      "Authentication and authorization",
+      "MVC architecture",
+      "Blockchain basics",
+      "Data structures and algorithms"
     ]
   },
   "services": [
     {
-      "title": "Full-Stack MVPs",
-      "description": "Rapidly ship MVPs with clean architecture, ready for growth and iteration."
+      "title": "REST API Development",
+      "description": "Design secure, well-structured APIs with clear documentation."
     },
     {
-      "title": "Productized Dashboards",
-      "description": "Build internal tools and analytics dashboards with secure role-based access."
+      "title": "Backend Systems",
+      "description": "Build scalable services with robust auth and data integrity."
     },
     {
-      "title": "Content Platforms",
-      "description": "CMS-driven platforms with performant frontends and easy admin workflows."
+      "title": "Full-Stack Apps",
+      "description": "Deliver end-to-end features using Django, Spring Boot, or MERN."
     }
   ],
   "featuredProjects": [
@@ -175,56 +180,79 @@
   ],
   "experience": [
     {
-      "role": "Full Stack Developer",
-      "company": "Freelance",
+      "role": "Full Stack Projects",
+      "company": "Personal + Academic",
       "period": "2023 - Present",
       "details": [
-        "Delivered 10+ end-to-end web apps with React + Django.",
-        "Built reusable UI libraries to speed up project delivery.",
-        "Optimized API performance and improved page speed scores."
+        "Built REST APIs with Django, Spring Boot, and .NET Core.",
+        "Developed full-stack features using React and server-rendered UIs.",
+        "Designed relational and NoSQL data models with proper auth."
       ]
     },
     {
-      "role": "Frontend Developer",
-      "company": "Studio Loop",
-      "period": "2022 - 2023",
+      "role": "Hackathon Winner",
+      "company": "CarbonCoin Blockchain Network",
+      "period": "2026",
       "details": [
-        "Led UI implementation for a SaaS onboarding revamp.",
-        "Collaborated with design to build a consistent component system.",
-        "Introduced testing workflows that reduced regression issues."
+        "Built a blockchain-based carbon credit tracking system.",
+        "Developed Flask APIs and custom blockchain logic.",
+        "Delivered a working prototype under time constraints."
+      ]
+    },
+    {
+      "role": "Summer Internship (Currently Working)",
+      "company": "AI-Powered SaaS Projects",
+      "period": "2026",
+      "details": [
+        "Currently working on AI-powered SaaS systems with guided mentorship.",
+        "Selected for a 6-week program focused on AI-powered SaaS systems.",
+        "Planned work includes full-stack development, AI integration, and system design.",
+        "Training topics include LLMs, Vision AI, and architecture patterns."
       ]
     }
   ],
   "education": [
     {
-      "degree": "B.Sc. in Computer Science",
-      "school": "Gujarat University",
-      "period": "2020 - 2024"
+      "degree": "B.Tech in Computer Engineering",
+      "school": "Dharmsinh Desai University",
+      "period": "Aug 2023 - May 2027"
+    },
+    {
+      "degree": "HSC in Science",
+      "school": "Shree Swaminarayan Gurukul, Bhavnagar",
+      "period": "March 2023"
+    },
+    {
+      "degree": "SSC",
+      "school": "Shree R. K. Gharshala Vinaymandir, Bhavnagar",
+      "period": "May 2021"
     }
   ],
   "contact": {
-    "email": "hello@aarav.dev",
-    "phone": "+91 99999 88888",
-    "location": "Ahmedabad, India",
-    "cta": "Tell me about your product idea, and I will reply within 24 hours."
+    "email": "ronakmaniya2005@gmail.com",
+    "phone": "+91 9875049414",
+    "location": "Bhavnagar, India",
+    "cta": "Open to full stack internships, full-time roles, and collaborative projects."
   },
   "social": [
     {
       "label": "GitHub",
-      "url": "https://github.com/example"
+      "url": "https://github.com/ronakmaniya"
     },
     {
       "label": "LinkedIn",
-      "url": "https://linkedin.com/in/example"
-    },
-    {
-      "label": "Twitter",
-      "url": "https://twitter.com/example"
+      "url": "https://www.linkedin.com/in/ronak-maniya-7315b72b6/"
     },
     {
       "label": "Email",
-      "url": "mailto:hello@aarav.dev"
+      "url": "mailto:ronakmaniya2005@gmail.com"
     }
   ],
-  "resumeUrl": "https://example.com/resume.pdf"
+  "resumeUrl": "https://drive.google.com/file/d/1BTBgxR2yEn7WPe4b1ysRPLuZVkNd5p67/preview",
+  "footer": {
+    "tagline": "Open to full stack roles and internships.",
+    "copyrightName": "Ronak Maniya",
+    "techNote": "Built with React + Django.",
+    "year": 2026
+  }
 }
