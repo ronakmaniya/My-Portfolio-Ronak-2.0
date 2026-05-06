@@ -53,6 +53,10 @@ function Home() {
     blogPosts = [],
   } = siteData
 
+  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
+  const fallbackProjects = fallbackEnabled ? pickFeaturedProjects(featuredProjects) : []
+  const fallbackPosts = fallbackEnabled ? blogPosts.slice(0, 3) : []
+
   const [projectItems, setProjectItems] = useState([])
   const [postItems, setPostItems] = useState([])
   const [errors, setErrors] = useState({ projects: false, posts: false })
@@ -202,13 +206,13 @@ function Home() {
           <p className="section-eyebrow">Featured Projects</p>
           <h2>Proof of craft with real-world outcomes.</h2>
         </div>
-        {errors.projects ? (
+        {!projectItems.length && !fallbackProjects.length && errors.projects ? (
           <div className="card">
             <p>Projects are unavailable right now. Please try again later.</p>
           </div>
         ) : (
           <div className="grid-2">
-            {projectItems.map((project) => (
+            {(projectItems.length ? projectItems : fallbackProjects).map((project) => (
               <article key={project.title} className="project-card">
                 <div className="project-media">
                   {project.image_url ? (
@@ -253,13 +257,13 @@ function Home() {
           <p className="section-eyebrow">Writing</p>
           <h2>Latest notes on product engineering.</h2>
         </div>
-        {errors.posts ? (
+        {!postItems.length && !fallbackPosts.length && errors.posts ? (
           <div className="card">
             <p>Blog posts are unavailable right now. Please try again later.</p>
           </div>
         ) : (
           <div className="grid-3">
-            {postItems.map((post) => (
+            {(postItems.length ? postItems : fallbackPosts).map((post) => (
               <article key={post.slug} className="card">
                 <p className="tag">{post.category || 'Writing'}</p>
                 <h3>{post.title}</h3>

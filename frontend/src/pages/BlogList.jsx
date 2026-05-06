@@ -39,6 +39,10 @@ const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
 function BlogList() {
   const [categories, setCategories] = useState([])
   const [hasError, setHasError] = useState(false)
+  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
+  const fallbackCategories = fallbackEnabled && siteData.blogPosts?.length
+    ? groupPostsByCategory(siteData.blogPosts)
+    : []
 
   useEffect(() => {
     fetchPostsByCategory()
@@ -71,13 +75,13 @@ function BlogList() {
       </header>
 
       <section className="page-section">
-        {hasError ? (
+        {!categories.length && !fallbackCategories.length && hasError ? (
           <div className="card">
             <p>Blog posts are unavailable right now. Please try again later.</p>
           </div>
         ) : (
           <div className="blog-groups">
-            {categories
+            {(categories.length ? categories : fallbackCategories)
               .filter((category) => category.posts && category.posts.length > 0)
               .map((category) => (
                 <div key={category.slug} className="category-block">

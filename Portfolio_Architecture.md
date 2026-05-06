@@ -301,11 +301,9 @@ Behavior:
 
 ### Project Images (Hosting Strategy)
 
-- Use `image_url` in the Project model for now
-- Images are hosted externally (free tier CDN like Cloudinary or ImageKit)
-- Admin pastes the image URL in Django Admin
-- Backend only stores the URL; frontend renders it directly
-- Optional future upgrade: switch to file uploads with Django media + CDN
+- Use the `image` field in the Project model
+- Images are uploaded in Django Admin and stored in Cloudinary
+- Backend returns the CDN URL in the API response
 
 ---
 

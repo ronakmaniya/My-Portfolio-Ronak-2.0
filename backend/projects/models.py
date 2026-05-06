@@ -8,7 +8,7 @@ class Project(models.Model):
 	tech_stack = models.JSONField(default=list)
 	github_link = models.URLField(blank=True)
 	live_link = models.URLField(blank=True)
-	image_url = models.URLField(blank=True)
+	image = models.ImageField(upload_to="projects/", blank=True, null=True)
 	featured = models.BooleanField(default=False)
 	display_order = models.PositiveIntegerField(default=0)
 	created_at = models.DateTimeField(auto_now_add=True)

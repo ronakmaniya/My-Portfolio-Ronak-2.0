@@ -4,6 +4,8 @@ import { ENABLE_FALLBACK, fetchProjects } from '../services/api.js'
 
 function Projects() {
   const { featuredProjects = [] } = siteData
+  const fallbackEnabled = String(import.meta.env.VITE_ENABLE_FALLBACK || '').toLowerCase() === 'true'
+  const fallbackProjects = fallbackEnabled ? featuredProjects : []
   const [projects, setProjects] = useState([])
   const [hasError, setHasError] = useState(false)
 
@@ -39,13 +41,13 @@ function Projects() {
       </header>
 
       <section className="page-section">
-        {hasError ? (
+        {!projects.length && !fallbackProjects.length && hasError ? (
           <div className="card">
             <p>Projects are unavailable right now. Please try again later.</p>
           </div>
         ) : (
           <div className="grid-2">
-            {projects.map((project) => (
+            {(projects.length ? projects : fallbackProjects).map((project) => (
               <article key={project.title} className="project-card">
                 <div className="project-media">
                   {project.image_url ? (

@@ -28,6 +28,7 @@ Note: `.env` is for local development only and should not be committed. In produ
 - `DJANGO_ALLOWED_HOSTS` - comma-separated
 - `DJANGO_CORS_ALLOWED_ORIGINS` - comma-separated
 - `DJANGO_DB_ENGINE`, `DJANGO_DB_NAME`, `DJANGO_DB_USER`, `DJANGO_DB_PASSWORD`, `DJANGO_DB_HOST`, `DJANGO_DB_PORT`
+- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
 
 ## Run migrations
 
@@ -85,13 +86,12 @@ Contact
 
 Projects
 
-- Project: `title`, `tag`, `description`, `tech_stack`, `github_link`, `live_link`, `image_url`, `featured`, `display_order`, `created_at`
+- Project: `title`, `tag`, `description`, `tech_stack`, `github_link`, `live_link`, `image`, `featured`, `display_order`, `created_at`
 
 ## Notes
 
 - `excerpt` can be auto-generated when empty in the admin
-- `image_url` is stored as a URL string
-- Recommended: use a free tier image CDN (Cloudinary or ImageKit)
+- Project images are stored in Cloudinary via the `image` field
 
 ## CORS
 

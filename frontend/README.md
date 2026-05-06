@@ -45,7 +45,6 @@ npm run preview
 ## Data sources
 
 - Primary site data: `src/data/siteData.json`
-- Optional test content: `src/data/blogContent.json`
 - API data is fetched from the Django backend (see backend README)
 
 ## Fallback behavior
@@ -54,6 +53,8 @@ When `VITE_ENABLE_FALLBACK=true`, the UI uses:
 
 - `featuredProjects` and `blogPosts` from `siteData.json` if the API is unreachable
 - markdown rendering via `react-markdown` + `remark-gfm`
+
+Note: Fallback `featuredProjects` include `image_url` to match the API response shape. Leave it empty if you want placeholders during fallback mode.
 
 ## API usage
 
