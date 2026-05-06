@@ -21,6 +21,13 @@ npm run dev
 
 Vite will print the local URL (usually http://localhost:5173).
 
+## Environment variables
+
+Create a `.env` file in this folder or copy `.env.example`.
+
+- `VITE_API_BASE_URL` - Django API base URL (default http://127.0.0.1:8000).
+- `VITE_ENABLE_FALLBACK` - When `true`, use local `siteData.json` as a fallback if the API is unreachable.
+
 ## Production build
 
 ```bash
