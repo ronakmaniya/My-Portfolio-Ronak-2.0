@@ -8,6 +8,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = (
             "title",
+            "tag",
             "description",
             "tech_stack",
             "github_link",

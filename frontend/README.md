@@ -43,4 +43,13 @@ npm run preview
 ## Project notes
 
 - Static content lives in `src/data/siteData.json`.
-- Dynamic content is fetched from the Django API (see backend README).
+- API data is fetched from the Django backend (see backend README).
+- Fallback data uses `featuredProjects` and `blogPosts` from `siteData.json` when enabled.
+- Markdown is rendered with `react-markdown` and `remark-gfm`.
+
+## API usage
+
+- `GET /api/projects/`
+- `GET /api/posts/`
+- `GET /api/posts/<slug>/`
+- `POST /api/contact/`

@@ -45,8 +45,8 @@ Admin URL: http://127.0.0.1:8000/admin/
 
 Blog
 
-- `GET /api/posts/` returns posts grouped by category
-- `GET /api/posts/<slug>/` returns a single post
+- `GET /api/posts/` returns published posts grouped by category
+- `GET /api/posts/<slug>/` returns a single published post
 
 Contact
 
@@ -63,7 +63,7 @@ Projects
 Blog
 
 - Category: `name`, `slug`
-- Post: `title`, `slug`, `content`, `category`, `is_published`, `created_at`
+- Post: `title`, `slug`, `content`, `category`, `is_published`, `created_at`, `updated_at`
 
 Contact
 
@@ -71,7 +71,7 @@ Contact
 
 Projects
 
-- Project: `title`, `description`, `tech_stack`, `github_link`, `live_link`, `image_url`, `featured`, `display_order`, `created_at`
+- Project: `title`, `tag`, `description`, `tech_stack`, `github_link`, `live_link`, `image_url`, `featured`, `display_order`, `created_at`
 
 ## Project images
 

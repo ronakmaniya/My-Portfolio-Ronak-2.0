@@ -3,6 +3,7 @@ from django.db import models
 
 class Project(models.Model):
 	title = models.CharField(max_length=200)
+	tag = models.CharField(max_length=80, blank=True)
 	description = models.TextField()
 	tech_stack = models.JSONField(default=list)
 	github_link = models.URLField(blank=True)
