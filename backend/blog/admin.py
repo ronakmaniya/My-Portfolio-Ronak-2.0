@@ -24,8 +24,8 @@ class PostAdminForm(forms.ModelForm):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
 	form = PostAdminForm
-	list_display = ("title", "category", "is_published", "created_at")
+	list_display = ("title", "category", "excerpt", "is_published", "created_at")
 	list_filter = ("category", "is_published")
-	search_fields = ("title", "content")
+	search_fields = ("title", "excerpt", "content")
 	prepopulated_fields = {"slug": ("title",)}
 	date_hierarchy = "created_at"

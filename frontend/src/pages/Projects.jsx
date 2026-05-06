@@ -10,7 +10,13 @@ function Projects() {
   useEffect(() => {
     fetchProjects()
       .then((data) => {
-        setProjects(data)
+        if (data.length) {
+          setProjects(data)
+          return
+        }
+        if (ENABLE_FALLBACK && featuredProjects.length) {
+          setProjects(featuredProjects)
+        }
       })
       .catch(() => {
         if (ENABLE_FALLBACK && featuredProjects.length) {

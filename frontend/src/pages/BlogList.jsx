@@ -20,6 +20,22 @@ const groupPostsByCategory = (posts) => {
   return Object.values(grouped)
 }
 
+const getExcerpt = (post) => {
+  if (post.excerpt) {
+    return post.excerpt
+  }
+  if (!post.content) {
+    return 'Read the full article for details.'
+  }
+  const collapsed = post.content.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim()
+  if (!collapsed) {
+    return 'Read the full article for details.'
+  }
+  return collapsed.length > 140 ? `${collapsed.slice(0, 140).trim()}...` : collapsed
+}
+
+const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
+
 function BlogList() {
   const [categories, setCategories] = useState([])
   const [hasError, setHasError] = useState(false)
@@ -29,6 +45,10 @@ function BlogList() {
       .then((data) => {
         if (data.categories?.length) {
           setCategories(data.categories)
+          return
+        }
+        if (ENABLE_FALLBACK && siteData.blogPosts?.length) {
+          setCategories(groupPostsByCategory(siteData.blogPosts))
         }
       })
       .catch(() => {
@@ -67,9 +87,9 @@ function BlogList() {
                       <article key={post.slug} className="card">
                         <p className="tag">{category.name}</p>
                         <h3>{post.title}</h3>
-                        <p>{post.excerpt || 'Read the full article for details.'}</p>
+                        <p>{getExcerpt(post)}</p>
                         <div className="card-meta">
-                          <span>{post.date || post.created_at?.slice(0, 10)}</span>
+                          <span>{getDateLabel(post)}</span>
                           <Link to={`/blog/${post.slug}`}>Read more</Link>
                         </div>
                       </article>

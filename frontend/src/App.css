@@ -356,7 +356,7 @@
 }
 
 .markdown-content p {
-  margin-bottom: 1.5rem;
+  margin: 0.75rem 0;
   white-space: normal; /* Reset for paragraphs */
 }
 
@@ -371,14 +371,19 @@
 
 .markdown-content ul,
 .markdown-content ol {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
+  margin: 0.75rem 0 1rem;
+  padding-left: 1.25rem;
   list-style: initial;
   display: block;
 }
 
 .markdown-content li {
-  margin-bottom: 0.5rem;
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+
+.markdown-content li > p {
+  margin: 0.35rem 0;
 }
 
 .markdown-content code {
@@ -408,7 +413,7 @@
   border-left: 4px solid var(--accent);
   padding-left: 1.5rem;
   margin-left: 0;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
   font-style: italic;
   color: var(--muted);
 }

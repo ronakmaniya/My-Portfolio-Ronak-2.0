@@ -5,6 +5,33 @@ import remarkGfm from 'remark-gfm'
 import siteData from '../data/siteData.json'
 import { ENABLE_FALLBACK, fetchPostBySlug } from '../services/api.js'
 
+const getExcerpt = (post) => {
+  if (post.excerpt) {
+    return post.excerpt
+  }
+  if (!post.content) {
+    return ''
+  }
+  const collapsed = post.content.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim()
+  if (!collapsed) {
+    return ''
+  }
+  return collapsed.length > 160 ? `${collapsed.slice(0, 160).trim()}...` : collapsed
+}
+
+const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
+
+const formatCategory = (category) => {
+  if (!category) {
+    return 'Blog'
+  }
+  return category
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(' ')
+}
+
 function BlogDetail() {
   const { slug } = useParams()
   const [post, setPost] = useState(null)
@@ -60,10 +87,10 @@ function BlogDetail() {
   return (
     <div className="page">
       <header className="page-hero">
-        <p className="section-eyebrow">{post.category}</p>
+        <p className="section-eyebrow">{formatCategory(post.category)}</p>
         <h1>{post.title}</h1>
-        <p className="lead">{post.excerpt}</p>
-        <span className="muted">{post.date}</span>
+        <p className="lead">{getExcerpt(post)}</p>
+        <span className="muted">{getDateLabel(post)}</span>
       </header>
 
       <section className="page-section">

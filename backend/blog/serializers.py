@@ -6,7 +6,7 @@ from .models import Category, Post
 class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ("title", "slug", "created_at")
+        fields = ("title", "slug", "excerpt", "created_at")
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("title", "slug", "content", "created_at", "category")
+        fields = ("title", "slug", "excerpt", "content", "created_at", "category")
 
 
 class CategoryWithPostsSerializer(serializers.ModelSerializer):

@@ -1,0 +1,31 @@
+{
+  "blogPosts": [
+    {
+      "title": "Designing APIs that feel instant to the frontend",
+      "slug": "instant-apis",
+      "excerpt": "A practical checklist for API design that reduces front-end work and speeds delivery.",
+      "content": "# Designing APIs that feel instant to the frontend\n\nWhen the API is predictable, the UI ships faster. This post captures the checklist I use to keep responses consistent, easy to consume, and stable across releases.\n\n## The north star\n\n> The best API response is the one the UI does not have to reshape.\n\nI optimize for three things: **shape stability**, **clear errors**, and **fast iteration**.\n\n## Response shape rules\n\n- Return a top-level `data` object every time.\n- Add `meta` only when it truly matters.\n- Avoid conditional keys that appear only sometimes.\n\nExample response:\n\n```json\n{\n  \"data\": {\n    \"items\": [],\n    \"next\": null\n  },\n  \"meta\": {\n    \"request_id\": \"a1b2\"\n  }\n}\n```\n\n## Error contract\n\nErrors should follow one predictable shape:\n\n```json\n{\n  \"error\": {\n    \"code\": \"validation_error\",\n    \"message\": \"Email is required\",\n    \"fields\": {\n      \"email\": [\"Required\"]\n    }\n  }\n}\n```\n\n## Pagination that is easy to render\n\n| Field | Type | Notes |\n| --- | --- | --- |\n| `next` | string or null | URL for next page |\n| `prev` | string or null | URL for previous page |\n| `items` | array | Always present |\n\n## Caching notes\n\n- Use `ETag` for list endpoints.\n- Keep ordering stable to avoid UI jitter.\n- Return `updated_at` for detail pages.\n\n## Quick checklist\n\n- [x] Stable keys for all responses\n- [x] Strict error schema\n- [x] Pagination with `next` and `prev`\n- [x] ISO 8601 timestamps\n\n## Example request\n\n```bash\ncurl -H \"Accept: application/json\" https://api.example.com/v1/projects\n```\n\n## Example response\n\n```json\n{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": 12,\n        \"title\": \"InsightHub Analytics\",\n        \"featured\": true,\n        \"updated_at\": \"2026-04-12T10:30:00Z\"\n      }\n    ],\n    \"next\": null,\n    \"prev\": null\n  }\n}\n```\n\nIf you are starting fresh, copy this structure and you will save front-end time on every feature.\n\n---\n\n**Related:** [API design notes](https://example.com/api-notes)\n",
+      "date": "2026-04-18",
+      "created_at": "2026-04-18T09:20:00Z",
+      "category": "backend"
+    },
+    {
+      "title": "UX writing that reduces support tickets",
+      "slug": "ux-writing-support",
+      "excerpt": "Small changes in copy can reduce confusion and cut support load. Here is a tested approach.",
+      "content": "# UX writing that reduces support tickets\n\nWords shape behavior. A single label can add or remove friction from a flow. This post shows a simple framework I use to improve copy and reduce user errors.\n\n## A quick example\n\nBefore: **Create**\n\nAfter: **Create invoice**\n\nThe second option removes ambiguity and reduces mistakes.\n\n## The 3-step framework\n\n1. **Name the action**\n2. **Clarify the outcome**\n3. **Set expectations**\n\n### 1) Name the action\n\nUse verb-first labels that say exactly what will happen.\n\n- Good: `Save draft`\n- Bad: `Submit`\n\n### 2) Clarify the outcome\n\nAdd a short supporting line below the button:\n\n> You can edit the draft before sending.\n\n### 3) Set expectations\n\nCall out timing and limits in the UI:\n\n```text\nThis import may take 2-3 minutes.\nWe will email you when it is ready.\n```\n\n## A tiny checklist\n\n- [x] Button text is specific\n- [x] One sentence sets expectations\n- [x] Error messages explain the fix\n\n## Error messages that help\n\n| Error | Better |\n| --- | --- |\n| \"Invalid\" | \"Password must be at least 12 characters\" |\n| \"Failed\" | \"Upload failed. Try a smaller file.\" |\n\n## A short script for reviews\n\n```js\nconst auditCopy = (label, helper) => {\n  if (!label || label.length < 3) return 'Label too short';\n  if (helper && helper.length > 120) return 'Helper too long';\n  return 'OK';\n};\n```\n\n## Final thought\n\n> Clear copy is a feature, not an afterthought.\n\n---\n\n**Further reading:** [Writing for interfaces](https://example.com/ux-writing)\n",
+      "date": "2026-03-12",
+      "created_at": "2026-03-12T14:05:00Z",
+      "category": "product"
+    },
+    {
+      "title": "Shipping a portfolio in 10 days: a real plan",
+      "slug": "portfolio-10-days",
+      "excerpt": "A day-by-day plan with constraints, scope control, and a launch checklist.",
+      "content": "# Shipping a portfolio in 10 days: a real plan\n\nThis is a realistic plan for a tight timeline. It is not about perfection. It is about shipping a credible product.\n\n## Scope\n\nI cap scope to **5 pages** and **3 sections** each. If a section does not support hiring goals, it ships later.\n\n## Day-by-day\n\n### Day 1: Direction\n\n- Write the project goal\n- Pick the stack\n- Define the content outline\n\n### Day 2: Layout\n\n- Build the nav and hero\n- Set type scale\n- Define spacing system\n\n### Day 3: Projects\n\n- Add 3 projects with screenshots\n- Write impact-focused descriptions\n\n### Day 4: Blog\n\n- Add 3 posts\n- Ensure markdown renders correctly\n\n### Day 5: Contact\n\n- Add a form\n- Confirm email delivery\n\n### Day 6-7: Polish\n\n- Fix responsive layout\n- Check spacing and rhythm\n- Add subtle motion\n\n### Day 8: Perf\n\n- Compress images\n- Verify lighthouse scores\n\n### Day 9: QA\n\n- Test on 3 screen sizes\n- Fix edge cases\n\n### Day 10: Launch\n\n- Point domain\n- Share with 5 peers\n\n## The launch checklist\n\n- [x] No console errors\n- [x] Forms validated\n- [x] 404 page exists\n- [x] Metadata set\n- [x] Analytics added\n\n## Example project write-up\n\n```md\n**Result:** Increased weekly signups by 28%\n**Stack:** React, Django, Postgres\n**Work:** Rebuilt onboarding and added dashboard analytics\n```\n\n## Image test\n\n![Sample hero](https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200)\n\n## Final note\n\nI ship with a timer. It keeps the work honest.\n",
+      "date": "2026-02-02",
+      "created_at": "2026-02-02T08:10:00Z",
+      "category": "career"
+    }
+  ]
+}

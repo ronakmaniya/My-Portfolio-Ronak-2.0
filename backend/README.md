@@ -1,6 +1,6 @@
 # Backend (Django + DRF)
 
-This is the backend for the portfolio + blog system. It uses Django and Django REST Framework.
+Backend for the portfolio + blog system. Built with Django and Django REST Framework.
 
 ## Requirements
 
@@ -11,30 +11,30 @@ This is the backend for the portfolio + blog system. It uses Django and Django R
 
 ```bash
 python -m venv .venv
-.\.venv\Scripts\python -m pip install --upgrade pip
-.\.venv\Scripts\python -m pip install -r requirements.txt
+..\.venv\Scripts\python -m pip install --upgrade pip
+..\.venv\Scripts\python -m pip install -r requirements.txt
 ```
 
 ## Run migrations
 
 ```bash
-.\.venv\Scripts\python manage.py migrate
+..\.venv\Scripts\python manage.py migrate
 ```
 
 ## Create admin user
 
 ```bash
-.\.venv\Scripts\python manage.py createsuperuser
+..\.venv\Scripts\python manage.py createsuperuser
 ```
 
 ## Run the dev server
 
 ```bash
-.\.venv\Scripts\python manage.py runserver
+..\.venv\Scripts\python manage.py runserver
 ```
 
-Server URL: http://127.0.0.1:8000/
-Admin URL: http://127.0.0.1:8000/admin/
+- Server URL: http://127.0.0.1:8000/
+- Admin URL: http://127.0.0.1:8000/admin/
 
 ## Project structure
 
@@ -63,7 +63,7 @@ Projects
 Blog
 
 - Category: `name`, `slug`
-- Post: `title`, `slug`, `content`, `category`, `is_published`, `created_at`, `updated_at`
+- Post: `title`, `slug`, `excerpt`, `content`, `category`, `is_published`, `created_at`, `updated_at`
 
 Contact
 
@@ -73,8 +73,9 @@ Projects
 
 - Project: `title`, `tag`, `description`, `tech_stack`, `github_link`, `live_link`, `image_url`, `featured`, `display_order`, `created_at`
 
-## Project images
+## Notes
 
+- `excerpt` can be auto-generated when empty in the admin
 - `image_url` is stored as a URL string
 - Recommended: use a free tier image CDN (Cloudinary or ImageKit)
 

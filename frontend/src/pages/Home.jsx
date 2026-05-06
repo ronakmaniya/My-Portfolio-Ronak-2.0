@@ -20,6 +20,22 @@ const flattenPosts = (categories) =>
     category.posts.map((post) => ({ ...post, category: category.name }))
   )
 
+const getExcerpt = (post) => {
+  if (post.excerpt) {
+    return post.excerpt
+  }
+  if (!post.content) {
+    return 'Read the full article for details.'
+  }
+  const collapsed = post.content.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim()
+  if (!collapsed) {
+    return 'Read the full article for details.'
+  }
+  return collapsed.length > 140 ? `${collapsed.slice(0, 140).trim()}...` : collapsed
+}
+
+const getDateLabel = (post) => post.date || post.created_at?.slice(0, 10) || ''
+
 function Home() {
   const {
     name,
@@ -44,11 +60,18 @@ function Home() {
   useEffect(() => {
     fetchProjects()
       .then((data) => {
-        setProjectItems(pickFeaturedProjects(data))
+        const featured = pickFeaturedProjects(data)
+        if (featured.length) {
+          setProjectItems(featured)
+          return
+        }
+        if (ENABLE_FALLBACK && featuredProjects.length) {
+          setProjectItems(pickFeaturedProjects(featuredProjects))
+        }
       })
       .catch(() => {
         if (ENABLE_FALLBACK && featuredProjects.length) {
-          setProjectItems(featuredProjects)
+          setProjectItems(pickFeaturedProjects(featuredProjects))
           return
         }
         setErrors((prev) => ({ ...prev, projects: true }))
@@ -60,7 +83,13 @@ function Home() {
       .then((data) => {
         const categories = data.categories || []
         const posts = flattenPosts(categories)
-        setPostItems(posts.slice(0, 3))
+        if (posts.length) {
+          setPostItems(posts.slice(0, 3))
+          return
+        }
+        if (ENABLE_FALLBACK && blogPosts.length) {
+          setPostItems(blogPosts.slice(0, 3))
+        }
       })
       .catch(() => {
         if (ENABLE_FALLBACK && blogPosts.length) {
@@ -234,9 +263,9 @@ function Home() {
               <article key={post.slug} className="card">
                 <p className="tag">{post.category || 'Writing'}</p>
                 <h3>{post.title}</h3>
-                <p>{post.excerpt || 'Read the full article for details.'}</p>
+                <p>{getExcerpt(post)}</p>
                 <div className="card-meta">
-                  <span>{post.date || post.created_at?.slice(0, 10)}</span>
+                  <span>{getDateLabel(post)}</span>
                   <Link to={`/blog/${post.slug}`}>Read more</Link>
                 </div>
               </article>

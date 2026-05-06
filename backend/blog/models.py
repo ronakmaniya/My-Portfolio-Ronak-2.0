@@ -29,6 +29,7 @@ def unique_slugify(model, base_text, instance_id=None):
 class Post(models.Model):
 	title = models.CharField(max_length=200)
 	slug = models.SlugField(max_length=220, unique=True)
+	excerpt = models.TextField(blank=True)
 	content = models.TextField()
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="posts")
 	is_published = models.BooleanField(default=True)
@@ -40,3 +41,11 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	def save(self, *args, **kwargs):
+		if not self.excerpt and self.content:
+			collapsed = " ".join(self.content.split())
+			self.excerpt = (
+				f"{collapsed[:200].rstrip()}..." if len(collapsed) > 200 else collapsed
+			)
+		super().save(*args, **kwargs)

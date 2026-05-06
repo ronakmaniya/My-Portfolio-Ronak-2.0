@@ -6,10 +6,22 @@
   "intro": "I design and ship reliable full-stack products with modern React and Django, focused on performance, clarity, and clean UX.",
   "summary": "I am a product-minded developer who enjoys translating complex requirements into elegant, scalable web experiences. I work across the stack, partnering with founders and teams to ship MVPs, dashboards, and content platforms that are fast, secure, and easy to iterate.",
   "stats": [
-    { "label": "Years Experience", "value": "3+" },
-    { "label": "Projects Shipped", "value": "18" },
-    { "label": "Clients Served", "value": "12" },
-    { "label": "Avg. Launch Time", "value": "4 weeks" }
+    {
+      "label": "Years Experience",
+      "value": "3+"
+    },
+    {
+      "label": "Projects Shipped",
+      "value": "18"
+    },
+    {
+      "label": "Clients Served",
+      "value": "12"
+    },
+    {
+      "label": "Avg. Launch Time",
+      "value": "4 weeks"
+    }
   ],
   "highlights": [
     "API-first architecture",
@@ -18,11 +30,37 @@
     "Clear documentation"
   ],
   "skills": {
-    "Frontend": ["React", "Vite", "Tailwind", "Framer Motion", "Responsive UI"],
-    "Backend": ["Django", "Django REST Framework", "Node.js", "REST APIs", "Auth"],
-    "Database": ["PostgreSQL", "SQLite", "Prisma", "Redis"],
-    "DevOps": ["Docker", "CI/CD", "Render", "Vercel"],
-    "Design": ["Figma", "Design Systems", "UX Writing"]
+    "Frontend": [
+      "React",
+      "Vite",
+      "Tailwind",
+      "Framer Motion",
+      "Responsive UI"
+    ],
+    "Backend": [
+      "Django",
+      "Django REST Framework",
+      "Node.js",
+      "REST APIs",
+      "Auth"
+    ],
+    "Database": [
+      "PostgreSQL",
+      "SQLite",
+      "Prisma",
+      "Redis"
+    ],
+    "DevOps": [
+      "Docker",
+      "CI/CD",
+      "Render",
+      "Vercel"
+    ],
+    "Design": [
+      "Figma",
+      "Design Systems",
+      "UX Writing"
+    ]
   },
   "services": [
     {
@@ -43,7 +81,11 @@
       "title": "InsightHub Analytics",
       "tag": "SaaS Platform",
       "description": "A multi-tenant analytics platform with custom reports, alerts, and team workspaces.",
-      "tech_stack": ["React", "Django", "PostgreSQL"],
+      "tech_stack": [
+        "React",
+        "Django",
+        "PostgreSQL"
+      ],
       "github_link": "https://github.com/example",
       "live_link": "https://example.com",
       "image_url": "https://example.com/project-hero.png",
@@ -55,7 +97,11 @@
       "title": "Creator Portfolio CMS",
       "tag": "Content System",
       "description": "A headless CMS for creators with markdown editing, SEO tooling, and previews.",
-      "tech_stack": ["Vite", "DRF", "Cloudinary"],
+      "tech_stack": [
+        "Vite",
+        "DRF",
+        "Cloudinary"
+      ],
       "github_link": "https://github.com/example",
       "live_link": "https://example.com",
       "image_url": "https://example.com/project-cms.png",
@@ -67,7 +113,11 @@
       "title": "Ops Metrics Dashboard",
       "tag": "Internal Tool",
       "description": "An operational dashboard for monitoring service health, SLAs, and incidents.",
-      "tech_stack": ["React", "Django", "Redis"],
+      "tech_stack": [
+        "React",
+        "Django",
+        "Redis"
+      ],
       "github_link": "https://github.com/example",
       "live_link": "https://example.com",
       "image_url": "",
@@ -159,10 +209,22 @@
     "cta": "Tell me about your product idea, and I will reply within 24 hours."
   },
   "social": [
-    { "label": "GitHub", "url": "https://github.com/example" },
-    { "label": "LinkedIn", "url": "https://linkedin.com/in/example" },
-    { "label": "Twitter", "url": "https://twitter.com/example" },
-    { "label": "Email", "url": "mailto:hello@aarav.dev" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/example"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/example"
+    },
+    {
+      "label": "Twitter",
+      "url": "https://twitter.com/example"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:hello@aarav.dev"
+    }
   ],
   "resumeUrl": "https://example.com/resume.pdf"
 }

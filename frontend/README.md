@@ -1,6 +1,6 @@
 # Frontend (React + Vite)
 
-This is the frontend for the portfolio + blog system. It uses React with Vite.
+Frontend for the portfolio + blog system. Built with React and Vite.
 
 ## Requirements
 
@@ -40,12 +40,18 @@ npm run build
 npm run preview
 ```
 
-## Project notes
+## Data sources
 
-- Static content lives in `src/data/siteData.json`.
-- API data is fetched from the Django backend (see backend README).
-- Fallback data uses `featuredProjects` and `blogPosts` from `siteData.json` when enabled.
-- Markdown is rendered with `react-markdown` and `remark-gfm`.
+- Primary site data: `src/data/siteData.json`
+- Optional test content: `src/data/blogContent.json`
+- API data is fetched from the Django backend (see backend README)
+
+## Fallback behavior
+
+When `VITE_ENABLE_FALLBACK=true`, the UI uses:
+
+- `featuredProjects` and `blogPosts` from `siteData.json` if the API is unreachable
+- markdown rendering via `react-markdown` + `remark-gfm`
 
 ## API usage
 
