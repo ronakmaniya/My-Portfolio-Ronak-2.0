@@ -10,10 +10,24 @@ Backend for the portfolio + blog system. Built with Django and Django REST Frame
 ## Setup (Windows PowerShell)
 
 ```bash
+cd ..
 python -m venv .venv
-..\.venv\Scripts\python -m pip install --upgrade pip
-..\.venv\Scripts\python -m pip install -r requirements.txt
+.\.venv\Scripts\python -m pip install --upgrade pip
+.\.venv\Scripts\python -m pip install -r backend\requirements.txt
+cd backend
 ```
+
+## Environment variables
+
+Create a `.env` file in `backend/` or copy `.env.example`.
+
+Note: `.env` is for local development only and should not be committed. In production, set the same variables in your hosting platform.
+
+- `DJANGO_SECRET_KEY` - required in production
+- `DJANGO_DEBUG` - `true` or `false`
+- `DJANGO_ALLOWED_HOSTS` - comma-separated
+- `DJANGO_CORS_ALLOWED_ORIGINS` - comma-separated
+- `DJANGO_DB_ENGINE`, `DJANGO_DB_NAME`, `DJANGO_DB_USER`, `DJANGO_DB_PASSWORD`, `DJANGO_DB_HOST`, `DJANGO_DB_PORT`
 
 ## Run migrations
 
