@@ -83,99 +83,101 @@
   ],
   "featuredProjects": [
     {
-      "title": "InsightHub Analytics",
-      "tag": "SaaS Platform",
-      "description": "A multi-tenant analytics platform with custom reports, alerts, and team workspaces.",
+      "title": "CarbonCoin",
+      "tag": "Blockchain Hackathon Winner",
+      "description": "A blockchain-based system to track carbon credits and reward eco-friendly actions using a custom cryptocurrency.",
       "tech_stack": [
-        "React",
-        "Django",
-        "PostgreSQL"
+        "Flask",
+        "Python",
+        "Blockchain"
       ],
-      "github_link": "https://github.com/example",
-      "live_link": "https://example.com",
-      "image_url": "https://example.com/project-hero.png",
+      "github_link": "https://github.com/ronakmaniya/CarbonCoin-CC-Blockchain_network",
+      "live_link": "",
+      "image_url": "https://res.cloudinary.com/dpacluhgx/image/upload/v1/projects/Screenshot_2026-05-07_155612_l1qadu",
       "featured": true,
       "display_order": 1,
-      "created_at": "2026-04-12T10:30:00Z"
+      "created_at": "2026-04-20T10:00:00Z"
     },
     {
-      "title": "Creator Portfolio CMS",
-      "tag": "Content System",
-      "description": "A headless CMS for creators with markdown editing, SEO tooling, and previews.",
+      "title": "GameStore",
+      "tag": "Spring Boot REST API",
+      "description": "Backend APIs for managing games, users, purchases, and wishlists with role-based access control.",
       "tech_stack": [
-        "Vite",
-        "DRF",
-        "Cloudinary"
+        "Spring Boot",
+        "Java",
+        "MySQL",
+        "JWT"
       ],
-      "github_link": "https://github.com/example",
-      "live_link": "https://example.com",
-      "image_url": "https://example.com/project-cms.png",
+      "github_link": "https://github.com/ronakmaniya/GameStore1-SpringBoot-API",
+      "live_link": "",
+      "image_url": "https://res.cloudinary.com/dpacluhgx/image/upload/v1/projects/Screenshot_2026-05-07_160528_edtcdv",
       "featured": true,
       "display_order": 2,
-      "created_at": "2026-03-21T14:10:00Z"
+      "created_at": "2026-04-10T10:00:00Z"
     },
     {
-      "title": "Ops Metrics Dashboard",
-      "tag": "Internal Tool",
-      "description": "An operational dashboard for monitoring service health, SLAs, and incidents.",
+      "title": "Blockchain Voting System",
+      "tag": "MERN + Blockchain",
+      "description": "A decentralized voting platform with blockchain-backed integrity and a React frontend.",
       "tech_stack": [
         "React",
-        "Django",
-        "Redis"
+        "Node.js",
+        "Express.js",
+        "MongoDB"
       ],
-      "github_link": "https://github.com/example",
-      "live_link": "https://example.com",
-      "image_url": "",
+      "github_link": "https://github.com/ronakmaniya/blockchain-voting-system-MERN",
+      "live_link": "",
+      "image_url": "https://res.cloudinary.com/dpacluhgx/image/upload/v1/projects/Screenshot_2026-05-07_160917_a26jdh",
       "featured": false,
       "display_order": 3,
-      "created_at": "2026-02-02T09:15:00Z"
+      "created_at": "2026-03-30T10:00:00Z"
     }
   ],
   "blogPosts": [
     {
-      "title": "Designing APIs for fast frontend delivery",
-      "slug": "designing-apis",
-      "excerpt": "Build APIs that are predictable, fast to consume, and stable in production.",
-      "content": "## Designing APIs\n\nBuild APIs that are predictable, fast to consume, and stable in production.",
-      "date": "2026-04-12",
-      "created_at": "2026-04-12T08:00:00Z",
+      "title": "Designing REST APIs that scale with your frontend",
+      "slug": "designing-rest-apis",
+      "excerpt": "A practical checklist for predictable endpoints, clean error handling, and versioning that survives product changes.",
+      "content": "## Designing REST APIs That Scale\n\nWhen a frontend grows, the API can either keep pace or become the bottleneck. The goal is not just speed, but **predictability**.\n\n### What I optimize for\n- **Stable contracts:** avoid breaking field names and response shapes.\n- **Clear errors:** consistent error formats make debugging fast.\n- **Pagination first:** even if the first release has 5 items.\n\n### Practical checklist\n1. Use nouns for resources and keep routes consistent.\n2. Return validation errors as a structured list.\n3. Include `created_at` and `updated_at` for sorting and caching.\n4. Decide on versioning early, even if it is just `/api/v1/`.\n\n### Simple error shape\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Email is required\"\n  }\n}\n```\n\nAPIs that feel consistent become easier to evolve. That is the real scale advantage.",
+      "date": "2026-05-06",
+      "created_at": "2026-05-06T08:30:00Z",
       "category": "backend"
     },
     {
-      "title": "The quiet power of UX writing",
-      "slug": "ux-writing",
-      "excerpt": "Small words can remove friction and increase trust.",
-      "content": "## UX writing\n\nSmall words can remove friction and increase trust.",
-      "date": "2026-03-21",
-      "created_at": "2026-03-21T09:30:00Z",
-      "category": "product"
+      "title": "JWT vs session auth: choosing the right approach",
+      "slug": "jwt-vs-session-auth",
+      "excerpt": "A quick guide to when JWT is the right fit and when classic session auth is simpler and safer.",
+      "content": "## JWT vs Session Auth\n\nBoth are valid. The difference is in **where state lives** and how you handle revocation.\n\n### Use JWT when\n- You need stateless services.\n- You are building multiple client types (web, mobile).\n- You are comfortable managing token refresh.\n\n### Use sessions when\n- You have a server-rendered app.\n- You want easy invalidation on logout.\n- You want a simpler security model.\n\n### Practical tips\n- Rotate JWT refresh tokens.\n- Keep access tokens short-lived.\n- For sessions, enable secure cookies in production.\n\nMost teams start with sessions and move to JWT only when the system truly needs it.",
+      "date": "2026-05-01",
+      "created_at": "2026-05-01T09:20:00Z",
+      "category": "security"
     },
     {
-      "title": "What I learned shipping a portfolio in 10 days",
-      "slug": "portfolio-learnings",
-      "excerpt": "A short reflection on scope, design, and delivery.",
-      "content": "## Shipping fast\n\nA short reflection on scope, design, and delivery.",
-      "date": "2026-02-04",
-      "created_at": "2026-02-04T07:45:00Z",
-      "category": "career"
+      "title": "Database indexes that actually help",
+      "slug": "indexes-that-help",
+      "excerpt": "Indexes are not free. Learn how to add them based on query patterns and measure impact.",
+      "content": "## Indexes That Actually Help\n\nIndexes speed up reads but slow down writes. The trick is to add them **only where queries repeat**.\n\n### My workflow\n1. Log slow queries.\n2. Identify filters and joins that repeat.\n3. Add a targeted index and measure again.\n\n### Examples\n- Index `user_id` for feeds or dashboards.\n- Composite index for `(user_id, created_at)` on activity tables.\n\nIf you cannot explain the query pattern, do not add the index yet.",
+      "date": "2026-04-20",
+      "created_at": "2026-04-20T10:15:00Z",
+      "category": "database"
     },
     {
-      "title": "Database indexing for real-world Django apps",
-      "slug": "django-indexing",
-      "excerpt": "Add indexes where query patterns are stable and frequent. Measure before and after.",
-      "content": "## Indexing\n\nAdd indexes where query patterns are stable and frequent. Measure before and after.",
-      "date": "2026-01-18",
-      "created_at": "2026-01-18T11:15:00Z",
+      "title": "Building a reliable contact form pipeline",
+      "slug": "contact-form-pipeline",
+      "excerpt": "From validation to rate limits, here is how I keep contact flows clean and spam-free.",
+      "content": "## A Reliable Contact Form Pipeline\n\nContact forms are small, but they touch security, UX, and data quality.\n\n### Key layers\n- **Validation:** reject empty or invalid emails early.\n- **Rate limits:** protect against spam and abuse.\n- **Storage:** keep submissions searchable in admin.\n\n### Nice extras\n- Add a success confirmation.\n- Send a copy to the user.\n- Use honeypot fields to block bots.\n\nA clean pipeline keeps the inbox useful and the admin calm.",
+      "date": "2026-04-05",
+      "created_at": "2026-04-05T11:10:00Z",
       "category": "backend"
     },
     {
-      "title": "Designing dashboards that teams actually use",
-      "slug": "useful-dashboards",
-      "excerpt": "Start with decisions, then back into the metrics that support them.",
-      "content": "## Dashboards\n\nStart with decisions, then back into the metrics that support them.",
-      "date": "2025-12-10",
-      "created_at": "2025-12-10T15:20:00Z",
-      "category": "product"
+      "title": "Frontend performance basics for full stack devs",
+      "slug": "frontend-performance-basics",
+      "excerpt": "Small wins like image sizing and bundle checks can make your UI feel instant.",
+      "content": "## Frontend Performance Basics\n\nEven in backend-heavy projects, frontend performance matters. A few small habits go a long way.\n\n### Quick wins\n- Serve appropriately sized images.\n- Lazy-load non-critical assets.\n- Audit bundle size during build.\n\n### Why it matters\nUsers judge speed before they judge features. A fast UI feels trustworthy.\n\nThis is why I keep performance in mind even when the focus is backend.",
+      "date": "2026-03-08",
+      "created_at": "2026-03-08T08:40:00Z",
+      "category": "frontend"
     }
   ],
   "experience": [
