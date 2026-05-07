@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'corsheaders',
+    'core',
     'blog',
     'contact',
     'projects',
@@ -164,4 +165,17 @@ CORS_ALLOWED_ORIGINS = [
     if origin.strip()
 ]
 
+FRONTEND_URL = os.environ.get("DJANGO_FRONTEND_URL", "http://localhost:5173")
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": (
+        [
+            "rest_framework.renderers.JSONRenderer",
+            "rest_framework.renderers.BrowsableAPIRenderer",
+        ]
+        if DEBUG
+        else ["rest_framework.renderers.JSONRenderer"]
+    )
+}

@@ -27,6 +27,7 @@ Note: `.env` is for local development only and should not be committed. In produ
 - `DJANGO_DEBUG` - `true` or `false`
 - `DJANGO_ALLOWED_HOSTS` - comma-separated
 - `DJANGO_CORS_ALLOWED_ORIGINS` - comma-separated
+- `DJANGO_FRONTEND_URL` - frontend base URL for the root landing page
 - `DJANGO_DB_ENGINE`, `DJANGO_DB_NAME`, `DJANGO_DB_USER`, `DJANGO_DB_PASSWORD`, `DJANGO_DB_HOST`, `DJANGO_DB_PORT`
 - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
 

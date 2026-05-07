@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio API Gateway</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/landing.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <p class="eyebrow">Backend</p>
+        <h1>Portfolio API Gateway</h1>
+        <p class="lead">
+          This root endpoint is a simple landing page for the Django backend. Use the
+          admin panel for content management and the API endpoints below for data.
+        </p>
+        <div class="actions">
+          <a class="btn" href="/admin/">Open Admin</a>
+          <a class="btn ghost" href="{{ frontend_url }}" target="_blank" rel="noreferrer">
+            Open Frontend
+          </a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>API Endpoints</h2>
+        <div class="api-list">
+          <div class="api-item">
+            <div>
+              <p class="api-title">Blog Posts</p>
+              <p class="api-desc">Grouped by category.</p>
+            </div>
+            <a class="api-link" href="/api/posts/">/api/posts/</a>
+          </div>
+          <div class="api-item">
+            <div>
+              <p class="api-title">Projects</p>
+              <p class="api-desc">Portfolio projects feed.</p>
+            </div>
+            <a class="api-link" href="/api/projects/">/api/projects/</a>
+          </div>
+          <div class="api-item">
+            <div>
+              <p class="api-title">Contact</p>
+              <p class="api-desc">Create contact message.</p>
+            </div>
+            <a class="api-link" href="/api/contact/">/api/contact/</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
