@@ -24,6 +24,12 @@ body {
   gap: 28px;
 }
 
+.page.single {
+  min-height: 100vh;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
 .card {
   background: #ffffff;
   border-radius: 20px;

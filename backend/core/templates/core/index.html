@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'core/landing.css' %}" />
   </head>
   <body>
-    <main class="page">
+    <main class="page{% if not show_api %} single{% endif %}">
       <section class="card">
         <p class="eyebrow">Backend</p>
         <h1>Portfolio API Gateway</h1>
@@ -24,6 +24,7 @@
         </div>
       </section>
 
+      {% if show_api %}
       <section class="card">
         <h2>API Endpoints</h2>
         <div class="api-list">
@@ -50,6 +51,7 @@
           </div>
         </div>
       </section>
+      {% endif %}
     </main>
   </body>
 </html>
