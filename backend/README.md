@@ -28,7 +28,8 @@ Note: `.env` is for local development only and should not be committed. In produ
 - `DJANGO_ALLOWED_HOSTS` - comma-separated
 - `DJANGO_CORS_ALLOWED_ORIGINS` - comma-separated
 - `DJANGO_FRONTEND_URL` - frontend base URL for the root landing page
-- `DJANGO_DB_ENGINE`, `DJANGO_DB_NAME`, `DJANGO_DB_USER`, `DJANGO_DB_PASSWORD`, `DJANGO_DB_HOST`, `DJANGO_DB_PORT`
+- `DJANGO_CSRF_TRUSTED_ORIGINS` - comma-separated (https URLs in production)
+- `DATABASE_URL` - Render PostgreSQL URL (overrides local DB settings) (optional for local)
 - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
 
 ## Run migrations
