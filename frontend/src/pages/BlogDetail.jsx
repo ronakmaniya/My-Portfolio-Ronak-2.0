@@ -68,13 +68,13 @@ function BlogDetail() {
 
   if (hasError) {
     return (
-      <div className="page">
-        <header className="page-hero">
-          <p className="section-eyebrow">Blog</p>
-          <h1>Unable to load post</h1>
-          <p className="lead">Please try again later.</p>
+      <div className="flex flex-col gap-7 pb-4 pt-2">
+        <header className="rounded-[24px] border border-edge bg-paper-strong p-8 shadow-soft max-[720px]:p-6">
+          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Blog</p>
+          <h1 className="text-[clamp(2.4rem,3.5vw,3.6rem)] leading-[1.15]">Unable to load post</h1>
+          <p className="text-[1.05rem] text-ink-soft max-w-[540px]">Please try again later.</p>
         </header>
-        <Link className="btn ghost" to="/blog">
+        <Link className="btn btn-ghost" to="/blog">
           Back to blog
         </Link>
       </div>
@@ -83,13 +83,13 @@ function BlogDetail() {
 
   if (!post) {
     return (
-      <div className="page">
-        <header className="page-hero">
-          <p className="section-eyebrow">Blog</p>
-          <h1>Post not found</h1>
-          <p className="lead">The article you are looking for is not available yet.</p>
+      <div className="flex flex-col gap-7 pb-4 pt-2">
+        <header className="rounded-[24px] border border-edge bg-paper-strong p-8 shadow-soft max-[720px]:p-6">
+          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Blog</p>
+          <h1 className="text-[clamp(2.4rem,3.5vw,3.6rem)] leading-[1.15]">Post not found</h1>
+          <p className="text-[1.05rem] text-ink-soft max-w-[540px]">The article you are looking for is not available yet.</p>
         </header>
-        <Link className="btn ghost" to="/blog">
+        <Link className="btn btn-ghost" to="/blog">
           Back to blog
         </Link>
       </div>
@@ -97,25 +97,25 @@ function BlogDetail() {
   }
 
   return (
-    <div className="page">
-      <header className="page-hero">
-        <p className="section-eyebrow">{formatCategory(post.category)}</p>
-        <h1>{post.title}</h1>
-        <p className="lead">{getExcerpt(post)}</p>
-        <div className="article-meta">
-          <span className="muted">{getDateLabel(post)}</span>
-          {getReadTime(post) ? <span className="muted">{getReadTime(post)}</span> : null}
+    <div className="flex flex-col gap-7 pb-4 pt-2">
+      <header className="rounded-[24px] border border-edge bg-paper-strong p-8 shadow-soft max-[720px]:p-6">
+        <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">{formatCategory(post.category)}</p>
+        <h1 className="text-[clamp(2.4rem,3.5vw,3.6rem)] leading-[1.15]">{post.title}</h1>
+        <p className="text-[1.05rem] text-ink-soft max-w-[540px]">{getExcerpt(post)}</p>
+        <div className="flex flex-wrap gap-4 text-[13px]">
+          <span className="text-muted">{getDateLabel(post)}</span>
+          {getReadTime(post) ? <span className="text-muted">{getReadTime(post)}</span> : null}
         </div>
       </header>
 
-      <section className="page-section">
-        <div className="card markdown-content article-body">
+      <section className="flex flex-col gap-5">
+        <div className="card markdown-content max-w-[820px]">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post.content ? post.content.replace(/\\n/g, '\n') : ''}
           </ReactMarkdown>
         </div>
-        <div className="section-cta">
-          <Link className="btn ghost" to="/blog">
+        <div className="mt-5">
+          <Link className="btn btn-ghost" to="/blog">
             Back to blog
           </Link>
         </div>

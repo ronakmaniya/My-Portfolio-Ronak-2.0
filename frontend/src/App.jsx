@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import './App.css'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -34,9 +33,9 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="mx-auto flex max-w-[1240px] flex-col gap-14 px-6 pb-12 pt-6 max-[720px]:px-4 max-[720px]:pt-4">
       <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
-      <main className="main-content">
+      <main className="flex flex-col gap-16 max-[1024px]:gap-12">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

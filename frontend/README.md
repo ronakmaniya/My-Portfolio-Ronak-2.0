@@ -42,6 +42,20 @@ npm run build
 npm run preview
 ```
 
+## Tailwind CSS v4 setup checklist
+
+- Install Tailwind v4 + Vite plugin: `npm install -D tailwindcss @tailwindcss/vite`
+- Add the Vite plugin in `vite.config.js`:
+	- `import tailwindcss from '@tailwindcss/vite'`
+	- `plugins: [react(), tailwindcss()]`
+- Ensure `src/index.css` includes Tailwind:
+	- `@import "tailwindcss";`
+- Optional config file (only if you need theme extensions):
+	- Create `tailwind.config.js`
+	- Add `@config "./tailwind.config.js";` to `src/index.css`
+- Ensure `src/main.jsx` imports `./index.css`
+- Run `npm run dev`
+
 ## Data sources
 
 - Primary site data: `src/data/siteData.json`

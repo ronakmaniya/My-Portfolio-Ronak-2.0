@@ -64,37 +64,39 @@ function BlogList() {
   }, [])
 
   return (
-    <div className="page">
-      <header className="page-hero">
-        <p className="section-eyebrow">Blog</p>
-        <h1>Notes on engineering, product design, and delivery.</h1>
-        <p className="lead">
+    <div className="flex flex-col gap-7 pb-4 pt-2">
+      <header className="rounded-[24px] border border-edge bg-paper-strong p-8 shadow-soft max-[720px]:p-6">
+        <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Blog</p>
+        <h1 className="text-[clamp(2.4rem,3.5vw,3.6rem)] leading-[1.15]">Notes on engineering, product design, and delivery.</h1>
+        <p className="text-[1.05rem] text-ink-soft max-w-[540px]">
           Short, practical insights from shipping real projects.
         </p>
       </header>
 
-      <section className="page-section">
+      <section className="flex flex-col gap-5">
         {!categories.length && !fallbackCategories.length && hasError ? (
           <div className="card">
             <p>Blog posts are unavailable right now. Please try again later.</p>
           </div>
         ) : (
-          <div className="blog-groups">
+          <div className="flex flex-col gap-8">
             {(categories.length ? categories : fallbackCategories)
               .filter((category) => category.posts && category.posts.length > 0)
               .map((category) => (
-                <div key={category.slug} className="category-block">
-                  <div className="category-header">
+                <div key={category.slug}>
+                  <div className="mb-4 flex items-baseline justify-between gap-3 max-[640px]:flex-col max-[640px]:items-start">
                     <h2>{category.name}</h2>
-                    <span className="category-count">{category.posts.length} posts</span>
+                    <span className="text-[12px] uppercase tracking-[1.4px] text-muted">
+                      {category.posts.length} posts
+                    </span>
                   </div>
-                  <div className="grid-3">
+                  <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {category.posts.map((post) => (
-                      <article key={post.slug} className="card blog-card">
+                      <article key={post.slug} className="card flex flex-col gap-2">
                         <p className="tag">{category.name}</p>
                         <h3>{post.title}</h3>
                         <p>{getExcerpt(post)}</p>
-                        <div className="card-meta">
+                        <div className="flex items-center justify-between gap-2 text-[12px] text-muted max-[720px]:flex-col max-[720px]:items-start">
                           <span>{getDateLabel(post)}</span>
                           <Link to={`/blog/${post.slug}`}>Read more</Link>
                         </div>

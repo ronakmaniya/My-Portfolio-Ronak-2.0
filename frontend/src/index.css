@@ -1,74 +1,207 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+@config "./tailwind.config.js";
 
-:root {
-  --ink: #0e1418;
-  --ink-soft: #2e3a40;
-  --muted: #58626a;
-  --paper: #f6f2ed;
-  --paper-strong: #efe7dd;
-  --edge: #ded5c9;
-  --accent: #ce6a4a;
-  --accent-soft: rgba(206, 106, 74, 0.16);
-  --accent-strong: #1b3c44;
-  --shadow: 0 30px 60px rgba(15, 26, 31, 0.12);
-  --glass: rgba(246, 242, 237, 0.82);
+@layer base {
+  :root {
+    --ink: #0e1418;
+    --ink-soft: #2e3a40;
+    --muted: #58626a;
+    --paper: #f6f2ed;
+    --paper-strong: #efe7dd;
+    --edge: #ded5c9;
+    --accent: #ce6a4a;
+    --accent-soft: rgba(206, 106, 74, 0.16);
+    --accent-strong: #1b3c44;
+    --shadow: 0 30px 60px rgba(15, 26, 31, 0.12);
+    --glass: rgba(246, 242, 237, 0.82);
 
-  --sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
-  --heading: 'Space Grotesk', 'Segoe UI', sans-serif;
+    font: 18px/1.6 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    color: var(--ink-soft);
+    background: var(--paper);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  font: 18px/1.6 var(--sans);
-  color: var(--ink-soft);
-  background: var(--paper);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  [data-theme='dark'] {
+    --ink: #f4f1ec;
+    --ink-soft: #d9d2c9;
+    --muted: #b0a79d;
+    --paper: #0f1113;
+    --paper-strong: #181b1f;
+    --edge: #2a2f35;
+    --accent: #e27f5f;
+    --accent-soft: rgba(226, 127, 95, 0.18);
+    --accent-strong: #f4c4a6;
+    --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    --glass: rgba(18, 20, 24, 0.86);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(206, 106, 74, 0.16), transparent 45%),
+      radial-gradient(circle at 90% 20%, rgba(27, 60, 68, 0.14), transparent 45%),
+      var(--paper);
+    color: var(--ink-soft);
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+
+  p {
+    margin: 0 0 12px;
+  }
 }
 
-[data-theme='dark'] {
-  --ink: #f4f1ec;
-  --ink-soft: #d9d2c9;
-  --muted: #b0a79d;
-  --paper: #0f1113;
-  --paper-strong: #181b1f;
-  --edge: #2a2f35;
-  --accent: #e27f5f;
-  --accent-soft: rgba(226, 127, 95, 0.18);
-  --accent-strong: #f4c4a6;
-  --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-  --glass: rgba(18, 20, 24, 0.86);
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border border-transparent px-5 py-3 font-semibold transition duration-300 ease-out hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white shadow-[0_12px_24px_rgba(217,101,74,0.2)];
+  }
+
+  .btn-ghost {
+    @apply border-edge bg-paper-strong text-ink;
+  }
+
+  .icon-button {
+    @apply grid h-9 w-9 place-items-center rounded-full border border-edge bg-paper text-ink transition duration-200 hover:-translate-y-0.5 hover:border-accent;
+  }
+
+  .icon-button svg {
+    @apply h-[18px] w-[18px] fill-current;
+  }
+
+  .card {
+    @apply rounded-[20px] border border-edge bg-paper-strong p-5 shadow-[0_8px_20px_rgba(15,26,31,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_32px_rgba(15,26,31,0.14)];
+  }
+
+  .card-accent {
+    @apply bg-[linear-gradient(160deg,rgba(206,106,74,0.12),var(--paper-strong))];
+  }
+
+  .pill {
+    @apply rounded-full bg-accent-soft px-3 py-1.5 text-[13px] text-accent-strong;
+  }
+
+  .tag {
+    @apply text-[11px] uppercase tracking-[1.6px] text-accent-strong;
+  }
+
+  .markdown-content {
+    line-height: 1.7;
+    color: var(--ink-soft);
+    white-space: pre-wrap;
+  }
+
+  .markdown-content p {
+    margin: 0.75rem 0;
+    white-space: normal;
+  }
+
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    color: var(--ink);
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin: 0.75rem 0 1rem;
+    padding-left: 1.25rem;
+    list-style: initial;
+    display: block;
+  }
+
+  .markdown-content li {
+    margin: 0.25rem 0;
+    line-height: 1.6;
+  }
+
+  .markdown-content li > p {
+    margin: 0.35rem 0;
+  }
+
+  .markdown-content code {
+    background: var(--paper-strong);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+
+  .markdown-content pre {
+    background: #0f1113;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-content pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .markdown-content blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .markdown-content img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer utilities {
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-body {
-  margin: 0;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(206, 106, 74, 0.16), transparent 45%),
-    radial-gradient(circle at 90% 20%, rgba(27, 60, 68, 0.14), transparent 45%),
-    var(--paper);
-  color: var(--ink-soft);
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--heading);
-  color: var(--ink);
-  margin: 0 0 12px;
-}
-
-p {
-  margin: 0 0 12px;
+  .reveal {
+    opacity: 0;
+    animation: fade-up 0.9s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
 }
