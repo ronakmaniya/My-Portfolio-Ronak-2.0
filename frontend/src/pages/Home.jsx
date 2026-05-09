@@ -108,14 +108,14 @@ function Home() {
       <header className="py-12 pb-4">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div className="reveal flex flex-col gap-4" style={{ '--delay': '0.1s' }}>
-            <p className="inline-flex w-fit items-center gap-2 rounded-full bg-accent-soft px-2.5 py-1 text-[12px] uppercase tracking-[1.6px] text-accent-strong">
+            <p className="inline-flex w-fit items-center gap-2 rounded-full bg-accent-soft px-2.5 py-1 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[1.6px] text-accent-strong">
               {availability}
             </p>
             <h1 className="flex flex-col gap-3 font-heading text-[clamp(2.9rem,4.6vw,4.8rem)] leading-[1.05] text-ink max-[720px]:text-[clamp(2.4rem,8vw,3.2rem)]">
               {name}
               <span className="text-[clamp(1.4rem,2vw,2rem)] font-normal text-muted">{title}</span>
             </h1>
-            <p className="text-[1.05rem] text-ink-soft max-w-[540px]">{intro}</p>
+            <p className="text-[clamp(0.98rem,0.6vw,1.1rem)] text-ink-soft max-w-[540px]">{intro}</p>
             <div className="my-4 flex flex-wrap gap-4 max-[560px]:flex-col max-[560px]:items-stretch">
               <Link className="btn btn-primary max-[560px]:w-full max-[560px]:justify-center" to="/contact">
                 Lets talk
@@ -141,13 +141,13 @@ function Home() {
               {stats.map((stat) => (
                 <div key={stat.label} className="stat">
                   <p className="text-xl font-bold">{stat.value}</p>
-                  <p className="text-[13px] text-muted">{stat.label}</p>
+                  <p className="text-[clamp(0.72rem,0.5vw,0.85rem)] text-muted">{stat.label}</p>
                 </div>
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
               {highlights.map((item) => (
-                <span key={item} className="rounded-full bg-paper-strong px-2.5 py-1.5 text-[12px]">
+                <span key={item} className="rounded-full bg-paper-strong px-2.5 py-1.5 text-[clamp(0.68rem,0.5vw,0.75rem)]">
                   {item}
                 </span>
               ))}
@@ -158,7 +158,7 @@ function Home() {
 
       <section className="reveal grid gap-9 border-t border-edge py-4 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" style={{ '--delay': '0.1s' }}>
         <div className="lg:sticky lg:top-6">
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">About</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">About</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Building digital products with a strong engineering core.</h2>
         </div>
         <div>
@@ -175,10 +175,10 @@ function Home() {
 
       <section className="reveal grid gap-9 border-t border-edge py-4 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" style={{ '--delay': '0.15s' }}>
         <div className="lg:sticky lg:top-6">
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Skills</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Skills</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Focused on modern stacks and dependable delivery.</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 max-[640px]:gap-7 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries(skills).map(([group, items]) => (
             <div key={group} className="card">
               <h3>{group}</h3>
@@ -194,10 +194,10 @@ function Home() {
 
       <section className="reveal grid gap-9 border-t border-edge py-4 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" style={{ '--delay': '0.2s' }}>
         <div className="lg:sticky lg:top-6">
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Services</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Services</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">What I build for teams and startups.</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 max-[640px]:gap-7 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <div key={service.title} className="card card-accent">
               <h3>{service.title}</h3>
@@ -209,7 +209,7 @@ function Home() {
 
       <section className="reveal grid gap-9 border-t border-edge py-4 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" style={{ '--delay': '0.2s' }}>
         <div className="lg:sticky lg:top-6">
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Featured Projects</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Featured Projects</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Proof of craft with real-world outcomes.</h2>
         </div>
         {!projectItems.length && !fallbackProjects.length && errors.projects ? (
@@ -217,7 +217,7 @@ function Home() {
             <p>Projects are unavailable right now. Please try again later.</p>
           </div>
         ) : (
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 max-[640px]:gap-7 md:grid-cols-2">
             {(projectItems.length ? projectItems : fallbackProjects).map((project) => (
               <article key={project.title} className="group grid overflow-hidden rounded-[22px] border border-edge bg-paper-strong">
                 <div className="relative grid h-[200px] place-items-center overflow-hidden bg-paper">
@@ -236,7 +236,7 @@ function Home() {
                 <div className="p-5">
                   <p className="tag">{project.tag || 'Featured project'}</p>
                   <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+                  <p className="line-clamp-3">{project.description}</p>
                   <div className="my-4 flex flex-wrap gap-2">
                     {(project.tech_stack || []).map((tech) => (
                       <span key={tech} className="rounded-full bg-paper-strong px-2.5 py-1.5 text-[12px]">
@@ -266,7 +266,7 @@ function Home() {
 
       <section className="reveal grid gap-9 border-t border-edge py-4 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" style={{ '--delay': '0.25s' }}>
         <div className="lg:sticky lg:top-6">
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Writing</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Writing</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Latest notes on product engineering.</h2>
         </div>
         {!postItems.length && !fallbackPosts.length && errors.posts ? (
@@ -274,12 +274,12 @@ function Home() {
             <p>Blog posts are unavailable right now. Please try again later.</p>
           </div>
         ) : (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 max-[640px]:gap-7 md:grid-cols-2 lg:grid-cols-3">
             {(postItems.length ? postItems : fallbackPosts).map((post) => (
               <article key={post.slug} className="card">
                 <p className="tag">{post.category || 'Writing'}</p>
                 <h3>{post.title}</h3>
-                <p>{getExcerpt(post)}</p>
+                <p className="line-clamp-3">{getExcerpt(post)}</p>
                 <div className="flex items-center justify-between gap-2 text-[12px] text-muted max-[720px]:flex-col max-[720px]:items-start">
                   <span>{getDateLabel(post)}</span>
                   <Link to={`/blog/${post.slug}`}>Read more</Link>

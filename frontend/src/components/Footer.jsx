@@ -34,7 +34,7 @@ function Footer() {
           {social.map((link) => (
             <a
               key={link.label}
-              className="inline-flex items-center gap-2 rounded-full border border-edge bg-paper-strong px-3 py-2 text-[13px] text-ink-soft transition hover:-translate-y-0.5 hover:border-accent"
+              className="inline-flex items-center gap-2 rounded-full border border-edge bg-paper-strong px-3 py-2 text-[clamp(0.72rem,0.5vw,0.85rem)] text-ink-soft transition hover:-translate-y-0.5 hover:border-accent"
               href={link.url}
               target="_blank"
               rel="noreferrer"
@@ -45,7 +45,7 @@ function Footer() {
           ))}
         </div>
       </div>
-      <div className="flex flex-wrap justify-between gap-3 text-center text-[12px] text-muted max-[720px]:flex-col max-[720px]:text-left">
+      <div className="flex flex-wrap justify-between gap-3 text-center text-[clamp(0.7rem,0.5vw,0.8rem)] text-muted max-[720px]:flex-col max-[720px]:text-left">
         <span>{footer?.tagline}</span>
         <span className="flex-1">© {footerYear} {copyrightName}. All rights reserved.</span>
         <span>{footer?.techNote}</span>

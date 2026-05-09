@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
@@ -11,6 +11,7 @@ import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function App() {
+  const location = useLocation()
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
@@ -28,14 +29,19 @@ function App() {
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
+
   const handleToggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
   }
 
   return (
-    <div className="mx-auto flex max-w-[1240px] flex-col gap-14 px-6 pb-12 pt-6 max-[720px]:px-4 max-[720px]:pt-4">
+    <div className="mx-auto flex max-w-[1240px] flex-col gap-[clamp(2.5rem,3vw,3.5rem)] px-[clamp(16px,2vw,24px)] pb-[clamp(4rem,6vw,6rem)] pt-[clamp(1rem,2vw,1.5rem)]">
       <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
-      <main className="flex flex-col gap-16 max-[1024px]:gap-12">
+      <main className="flex flex-col gap-[clamp(3rem,4vw,4rem)]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

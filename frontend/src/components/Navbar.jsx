@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import siteData from '../data/siteData.json'
 
@@ -17,18 +18,53 @@ const iconMap = {
 function Navbar({ theme, onToggleTheme }) {
   const { name, resumeUrl, social } = siteData
   const navSocial = social.filter((item) => item.label === 'GitHub' || item.label === 'LinkedIn')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navLinkBase =
-    'rounded-full border border-transparent px-2.5 py-2 text-ink-soft transition-all hover:border-accent hover:bg-paper hover:text-ink max-[560px]:border max-[560px]:border-edge max-[560px]:bg-paper-strong max-[560px]:px-2.5 max-[560px]:py-1.5 max-[560px]:text-[13px] max-[560px]:tracking-[0.6px] max-[560px]:whitespace-nowrap'
+    'inline-flex items-center rounded-full border border-transparent px-3.5 py-2.5 text-ink-soft transition-all hover:border-accent hover:bg-paper hover:text-ink max-[1024px]:px-3 max-[1024px]:py-2 max-[560px]:w-full max-[560px]:justify-between max-[560px]:border max-[560px]:border-edge max-[560px]:bg-paper-strong max-[560px]:px-3 max-[560px]:py-2 max-[560px]:text-[13px] max-[560px]:tracking-[0.8px]'
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen((prev) => !prev)
+  }
+
+  const handleNavClick = () => {
+    setIsMenuOpen(false)
+  }
 
   return (
-    <nav className="sticky top-3 z-10 flex flex-wrap items-center justify-between gap-4 rounded-full border border-edge bg-glass px-6 py-4 shadow-soft backdrop-blur max-[1024px]:static max-[1024px]:flex-col max-[1024px]:items-stretch max-[1024px]:gap-3 max-[560px]:rounded-[24px] max-[560px]:px-4">
-      <div className="font-heading text-[20px] font-bold tracking-[0.2px] text-ink">{name}</div>
-      <div className="flex flex-wrap gap-4 rounded-full border border-edge bg-paper-strong px-2.5 py-1.5 text-[15px] uppercase tracking-[1px] max-[1024px]:w-full max-[1024px]:justify-start max-[1024px]:px-3 max-[1024px]:py-2 max-[560px]:flex-nowrap max-[560px]:gap-2 max-[560px]:border-0 max-[560px]:bg-transparent max-[560px]:px-0 max-[560px]:py-0 max-[560px]:overflow-x-auto">
+    <nav className="sticky top-2 z-10 flex flex-wrap items-center justify-between gap-6 rounded-[32px] border border-edge bg-glass px-8 py-5 shadow-soft backdrop-blur max-[1024px]:flex-col max-[1024px]:items-stretch max-[1024px]:gap-3 max-[1024px]:rounded-[22px] max-[1024px]:px-4 max-[1024px]:py-3 max-[560px]:rounded-[18px] max-[560px]:px-3 max-[560px]:py-2">
+      <div className="flex items-center justify-between gap-3 max-[560px]:w-full">
+        <div className="font-heading text-[22px] font-bold tracking-[0.2px] text-ink max-[560px]:text-[20px]">{name}</div>
+        <button
+          className="hidden items-center gap-2 rounded-full border border-edge bg-paper-strong px-3 py-2 text-[12px] uppercase tracking-[1.4px] text-ink transition hover:-translate-y-0.5 hover:border-accent max-[1024px]:inline-flex"
+          type="button"
+          onClick={handleToggleMenu}
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+        >
+          <span className="sr-only">Menu</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
+            <path
+              d="M4 7h16M4 12h16M4 17h16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="primary-navigation"
+        className={`flex flex-wrap gap-3 rounded-full border border-transparent bg-transparent px-0 py-0 text-[15px] uppercase tracking-[1px] max-[1024px]:flex-col max-[1024px]:items-stretch max-[1024px]:gap-2 max-[1024px]:w-full max-[1024px]:justify-start max-[1024px]:rounded-[20px] max-[1024px]:border-edge max-[1024px]:bg-paper-strong max-[1024px]:px-3 max-[1024px]:py-2 max-[560px]:rounded-[18px] max-[560px]:p-2 ${
+          isMenuOpen ? 'max-[1024px]:flex' : 'max-[1024px]:hidden'
+        }`}
+      >
         <NavLink
           to="/"
           className={({ isActive }) =>
             isActive ? `${navLinkBase} border-accent bg-paper text-ink` : navLinkBase
           }
+          onClick={handleNavClick}
         >
           Home
         </NavLink>
@@ -37,6 +73,7 @@ function Navbar({ theme, onToggleTheme }) {
           className={({ isActive }) =>
             isActive ? `${navLinkBase} border-accent bg-paper text-ink` : navLinkBase
           }
+          onClick={handleNavClick}
         >
           About
         </NavLink>
@@ -45,6 +82,7 @@ function Navbar({ theme, onToggleTheme }) {
           className={({ isActive }) =>
             isActive ? `${navLinkBase} border-accent bg-paper text-ink` : navLinkBase
           }
+          onClick={handleNavClick}
         >
           Projects
         </NavLink>
@@ -53,6 +91,7 @@ function Navbar({ theme, onToggleTheme }) {
           className={({ isActive }) =>
             isActive ? `${navLinkBase} border-accent bg-paper text-ink` : navLinkBase
           }
+          onClick={handleNavClick}
         >
           Blog
         </NavLink>
@@ -61,6 +100,7 @@ function Navbar({ theme, onToggleTheme }) {
           className={({ isActive }) =>
             isActive ? `${navLinkBase} border-accent bg-paper text-ink` : navLinkBase
           }
+          onClick={handleNavClick}
         >
           Contact
         </NavLink>
@@ -76,7 +116,21 @@ function Navbar({ theme, onToggleTheme }) {
           <button className="icon-button" type="button" onClick={onToggleTheme} aria-label="Toggle theme">
             {theme === 'dark' ? (
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 4.5a1 1 0 0 1 1 1V7a1 1 0 1 1-2 0V5.5a1 1 0 0 1 1-1zm0 11a1 1 0 0 1 1 1V18a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1zm7.5-3.5a1 1 0 0 1-1 1H17a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1zM7 12a1 1 0 0 1-1 1H4.5a1 1 0 1 1 0-2H6a1 1 0 0 1 1 1zm9.02-5.52a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zm-7.58 7.58a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zm7.58 1.41a1 1 0 0 1-1.41 0l-1.06-1.06a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1 0 1.41zm-7.58-7.58a1 1 0 0 1-1.41 0L5.97 6.83a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1 0 1.41zM12 8.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z" />
+                <path
+                  d="M12 3.5v3M12 17.5v3M20.5 12h-3M6.5 12h-3M18.1 5.9l-2.1 2.1M8 16l-2.1 2.1M18.1 18.1 16 16M8 8 5.9 5.9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
               </svg>
             ) : (
               <svg viewBox="0 0 24 24" aria-hidden="true">

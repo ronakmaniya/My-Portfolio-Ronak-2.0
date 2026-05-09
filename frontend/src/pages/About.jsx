@@ -6,9 +6,9 @@ function About() {
   return (
     <div className="flex flex-col gap-7 pb-4 pt-2">
       <header className="rounded-[24px] border border-edge bg-paper-strong p-8 shadow-soft max-[720px]:p-6">
-        <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">About</p>
-        <h1 className="text-[clamp(2.4rem,3.5vw,3.6rem)] leading-[1.15]">Product-focused developer with a calm execution style.</h1>
-        <p className="text-[1.05rem] text-ink-soft max-w-[540px]">{summary}</p>
+        <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">About</p>
+        <h1 className="text-[clamp(2rem,4.5vw,3.6rem)] leading-[1.15]">Product-focused developer with a calm execution style.</h1>
+        <p className="text-[clamp(0.98rem,0.6vw,1.08rem)] text-ink-soft max-w-[540px]">{summary}</p>
       </header>
 
       <section className="grid gap-5 lg:grid-cols-2">
@@ -30,7 +30,7 @@ function About() {
             {stats.map((stat) => (
               <div key={stat.label} className="stat">
                 <p className="text-xl font-bold">{stat.value}</p>
-                <p className="text-[13px] text-muted">{stat.label}</p>
+                <p className="text-[clamp(0.72rem,0.5vw,0.85rem)] text-muted">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -39,7 +39,7 @@ function About() {
 
       <section className="flex flex-col gap-5">
         <div>
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Skills</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Skills</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Core skills and trusted tools.</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -58,7 +58,7 @@ function About() {
 
       <section className="flex flex-col gap-5">
         <div>
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Experience</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Experience</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Teams, timelines, and outcomes.</h2>
         </div>
         <div className="flex flex-col gap-6">
@@ -68,7 +68,7 @@ function About() {
                 <h3>{role.role}</h3>
                 <p className="text-muted">{role.company}</p>
               </div>
-              <p className="text-[13px] text-muted">{role.period}</p>
+              <p className="text-[clamp(0.72rem,0.5vw,0.85rem)] text-muted">{role.period}</p>
               <ul className="mt-3 list-disc pl-5 text-muted">
                 {role.details.map((item) => (
                   <li key={item}>{item}</li>
@@ -81,7 +81,7 @@ function About() {
 
       <section className="flex flex-col gap-5">
         <div>
-          <p className="mb-2 text-[12px] uppercase tracking-[2px] text-accent-strong">Education</p>
+          <p className="mb-2 text-[clamp(0.65rem,0.5vw,0.75rem)] uppercase tracking-[2px] text-accent-strong">Education</p>
           <h2 className="text-[clamp(1.8rem,2.6vw,2.4rem)] leading-tight">Foundations and formal learning.</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
@@ -89,7 +89,7 @@ function About() {
             <div key={item.school} className="card">
               <h3>{item.degree}</h3>
               <p className="text-muted">{item.school}</p>
-              <p className="text-[13px] text-muted">{item.period}</p>
+              <p className="text-[clamp(0.72rem,0.5vw,0.85rem)] text-muted">{item.period}</p>
             </div>
           ))}
         </div>
