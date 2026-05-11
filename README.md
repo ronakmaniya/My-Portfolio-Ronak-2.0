@@ -2,6 +2,18 @@
 
 A full-stack developer portfolio with an integrated blog and projects system. The frontend is built with React (Vite) and the backend uses Django + Django REST Framework. Static site content is managed via JSON for fast updates, while dynamic content (blog, projects, contact) is managed through Django Admin.
 
+## Live Website
+
+- Production URL: https://ronak-maniya.vercel.app/
+- Hosting Platform: Vercel (https://vercel.com/)
+- Backend API URL: https://my-portfolio-ronak-2-0-backend.onrender.com/
+- Backend Hosting Platform: Render (https://render.com/)
+
+## Legacy Portfolio (Old Repo)
+
+The earlier static HTML/CSS/JavaScript portfolio is archived here:
+https://github.com/ronakmaniya/My-Portfolio-Ronak
+
 ## Highlights
 
 - Hybrid content model: static JSON + dynamic API
@@ -113,11 +125,41 @@ Frontend runs at: `http://localhost:5173/`
 - Static content lives in `frontend/src/data/siteData.json`
 - Dynamic content (blog, projects, contact) is managed via Django Admin
 
+## Cloudinary Setup (Brief)
+
+1) Create a Cloudinary account and a new cloud.
+2) Copy the credentials from the Cloudinary dashboard:
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+3) Add those values to:
+- `backend/.env` for local development
+- Your backend host environment variables for production
+4) Test an image upload by creating or updating a Project in Django Admin.
+
 ## Deployment Notes
 
 - Frontend: Vercel or Netlify
 - Backend: Render or Railway
 - Configure environment variables in your hosting platform
+
+## Deployment Steps (Brief)
+
+1) Backend (Render/Railway)
+- Copy variables from `backend/.env.example` into your hosting provider
+- Build command: `bash build.sh` (runs `pip install`, `collectstatic`, `migrate`)
+- Start command: `gunicorn core.wsgi` (matches `backend/Procfile`)
+- Create admin user once after deploy: `python manage.py createsuperuser`
+
+2) Frontend (Vercel/Netlify)
+- Copy variables from `frontend/.env.example` into your hosting provider
+- Set `VITE_API_BASE_URL` to the deployed backend URL
+- Build command: `npm run build`
+- Output directory: `dist` (SPA routing handled by `frontend/vercel.json`)
+
+3) Final checks
+- Update `DJANGO_ALLOWED_HOSTS` and `DJANGO_CORS_ALLOWED_ORIGINS`
+- Verify API endpoints and image uploads work
 
 ## Scripts
 
