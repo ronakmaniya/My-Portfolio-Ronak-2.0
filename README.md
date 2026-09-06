@@ -1,179 +1,132 @@
-# Full-Stack Portfolio + Blog System
+<div align="center">
 
-A full-stack developer portfolio with an integrated blog and projects system. The frontend is built with React (Vite) and the backend uses Django + Django REST Framework. Static site content is managed via JSON for fast updates, while dynamic content (blog, projects, contact) is managed through Django Admin.
+# Ronak Maniya — Full-Stack Portfolio + Blog
 
-## Live Website
+_A production portfolio with an integrated blog, dynamic projects showcase, and contact pipeline._
 
-- Production URL: https://ronak-maniya.vercel.app/
-- Hosting Platform: Vercel (https://vercel.com/)
-- Backend API URL: https://my-portfolio-ronak-2-0-backend.onrender.com/
-- Backend Hosting Platform: Render (https://render.com/)
+[![Live Site](https://img.shields.io/badge/Live_Site-Visit-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](https://ronak-maniya.vercel.app/)
+[![API](https://img.shields.io/badge/API-Render-5BE3B8?style=for-the-badge&logo=render&logoColor=black)](https://my-portfolio-ronak-2-0-backend.onrender.com/)
 
-## Legacy Portfolio (Old Repo)
+![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)
+![Django](https://img.shields.io/badge/Django_6-092E20?logo=django&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_v4-38BDF8?logo=tailwindcss&logoColor=white)
+![Postgres](https://img.shields.io/badge/Postgres-4169E1?logo=postgresql&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?logo=cloudinary&logoColor=white)
 
-The earlier static HTML/CSS/JavaScript portfolio is archived here:
-https://github.com/ronakmaniya/My-Portfolio-Ronak
+**[✨ Live Demo](https://ronak-maniya.vercel.app/) · [🏗️ Architecture](./Portfolio_Architecture.md) · [🎨 Frontend](./frontend/README.md) · [⚙️ Backend](./backend/README.md)**
 
-## Highlights
+</div>
 
-- Hybrid content model: static JSON + dynamic API
-- Blog with categories and Markdown rendering
-- Projects and contact system managed via Django Admin
-- Responsive, modern UI with light/dark theme support
-- Cloudinary-backed media uploads (project images)
+---
 
-## Tech Stack
+## ✨ Features
 
-**Frontend**
-- React + Vite
-- React Router
-- React Markdown + remark-gfm
+- 🖥️ **Portfolio pages** — Home, About, Projects, Blog, Contact + 404, responsive with light/dark theme
+- 📝 **Category blog** — grouped posts, slug URLs, Markdown rendering
+- 🚀 **Dynamic projects** — API-driven, ordered/featured, Cloudinary images
+- 📬 **Contact pipeline** — validated form saved to DB, reviewed in Django Admin
+- 🔀 **Hybrid content** — static JSON for stable copy, API for posts/projects/messages
+- 📴 **Offline-tolerant UI** — optional fallback to local JSON when the API is down
+- 🔒 **Prod-hardened** — CORS/CSRF allowlists, secure cookies, JSON-only API, TLS redirect
 
-**Backend**
-- Django + Django REST Framework
-- Django CORS Headers
-- Cloudinary Storage
+## 🗺️ Explore
 
-**Database**
-- SQLite (dev)
-- PostgreSQL (prod-ready via env vars)
+| | |
+|---|---|
+| 🏠 Portfolio | https://ronak-maniya.vercel.app/ |
+| 📝 Blog | https://ronak-maniya.vercel.app/blog |
+| 🚀 Projects | https://ronak-maniya.vercel.app/projects |
+| 📬 Contact | https://ronak-maniya.vercel.app/contact |
+| ⚙️ API root | https://my-portfolio-ronak-2-0-backend.onrender.com/ |
+| 🔑 Admin | https://my-portfolio-ronak-2-0-backend.onrender.com/admin/ |
 
-## Project Structure
+> The earlier static HTML/CSS/JS portfolio lives on at
+> [ronakmaniya/My-Portfolio-Ronak](https://github.com/ronakmaniya/My-Portfolio-Ronak).
 
-```
-backend/                 Django backend
-  blog/                  Blog app
-  contact/               Contact form app
-  projects/              Projects app
-  core/                  Django settings
-frontend/                React frontend
-  src/
-    components/
-    pages/
-    data/
-    services/
-Portfolio_Architecture.md
-README.md
+## 🏗️ How it works
+
+```mermaid
+flowchart LR
+    UI[React SPA · Vercel] -->|REST / JSON| API[Django + DRF · Render]
+    API --> DB[(SQLite dev<br/>Postgres prod)]
+    API --> CDN[(Cloudinary<br/>images)]
 ```
 
-## Requirements
+- **Separate Django apps** (`blog`, `contact`, `projects`) + thin `core` package
+- **Read-open, write-closed** — public reads, staff-only writes via `IsAdminUser`
+- **Django Admin is the CMS** — no custom admin panel
+- **One API layer** (`services/api.js`); static copy lives in `siteData.json`
 
-- Node.js 18+ and npm
-- Python 3.11+
+Full design → [`Portfolio_Architecture.md`](./Portfolio_Architecture.md)
 
-## Setup
+## 🚀 Quickstart
 
-### 1) Backend
+Requires **Node 18+** and **Python 3.11+**. Full env reference lives in the
+[frontend](./frontend/README.md#environment-variables) and
+[backend](./backend/README.md#environment-variables) docs.
 
-```bash
+```powershell
+# Backend → http://127.0.0.1:8000
 python -m venv .venv
-.\.venv\Scripts\python -m pip install --upgrade pip
 .\.venv\Scripts\python -m pip install -r backend\requirements.txt
 cd backend
-```
-
-Create a `.env` file in `backend/` (or copy `.env.example`) and set:
-
-- `DJANGO_SECRET_KEY`
-- `DJANGO_DEBUG`
-- `DJANGO_ALLOWED_HOSTS`
-- `DJANGO_CORS_ALLOWED_ORIGINS`
-- `DJANGO_DB_ENGINE`, `DJANGO_DB_NAME`, `DJANGO_DB_USER`, `DJANGO_DB_PASSWORD`, `DJANGO_DB_HOST`, `DJANGO_DB_PORT`
-- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
-
-Run migrations and start the server:
-
-```bash
+Copy-Item .env.example .env   # fill in values, then:
 ..\.venv\Scripts\python manage.py migrate
 ..\.venv\Scripts\python manage.py createsuperuser
 ..\.venv\Scripts\python manage.py runserver
 ```
 
-Backend runs at: `http://127.0.0.1:8000/`
-
-### 2) Frontend
-
 ```bash
-cd frontend
-npm install
-npm run dev
+# Frontend → http://localhost:5173
+cd frontend && cp .env.example .env && npm install && npm run dev
 ```
 
-Create a `.env` file in `frontend/` (or copy `.env.example`) and set:
+## 📁 Structure
 
-- `VITE_API_BASE_URL` (default: `http://127.0.0.1:8000`)
-- `VITE_ENABLE_FALLBACK` (`true` to use local JSON if API is unavailable)
+```text
+├── README.md                  ← you are here
+├── Portfolio_Architecture.md  ← system design & API contracts
+├── frontend/                  ← React + Vite SPA (pages, components, api.js, siteData.json)
+└── backend/                   ← Django + DRF (blog, projects, contact, core)
+```
 
-Frontend runs at: `http://localhost:5173/`
+## 🔌 API at a glance
 
-## API Endpoints
+| Method & path | Access |
+|---|---|
+| `GET /api/posts/` · `GET /api/posts/<slug>/` | Public |
+| `GET /api/projects/` | Public |
+| `POST /api/projects/` | Admin only |
+| `POST /api/contact/` | Public |
+| `GET /api/contact/submissions/` | Admin only |
 
-**Blog**
-- `GET /api/posts/` (grouped by category)
-- `GET /api/posts/<slug>/`
+Prod base: `https://my-portfolio-ronak-2-0-backend.onrender.com/api` ·
+Details + examples → [backend README](./backend/README.md#api-reference)
 
-**Projects**
-- `GET /api/projects/`
-- `POST /api/projects/` (admin only)
+## ☁️ Deploy
 
-**Contact**
-- `POST /api/contact/`
-- `GET /api/contact/submissions/` (admin only)
+- **Frontend (Vercel):** root `frontend/`, build `npm run build`, output `dist/`, SPA rewrite via `vercel.json`
+- **Backend (Render):** build `bash build.sh`, start `gunicorn core.wsgi`, one-time `createsuperuser`
+- Set `VITE_API_BASE_URL` to the prod backend; set `DEBUG=false` + real secret + `DATABASE_URL` on the backend
 
-## Content Management
+<details>
+<summary><strong>🔧 Troubleshooting</strong></summary>
 
-- Static content lives in `frontend/src/data/siteData.json`
-- Dynamic content (blog, projects, contact) is managed via Django Admin
+| Symptom | Fix |
+|---|---|
+| Empty sections / fallback showing | Check `VITE_API_BASE_URL`; Render free tier cold-starts — retry |
+| CORS error on contact POST | Add exact frontend origin to `DJANGO_CORS_ALLOWED_ORIGINS` + `DJANGO_CSRF_TRUSTED_ORIGINS` |
+| `DisallowedHost` (400) | Add backend host to `DJANGO_ALLOWED_HOSTS` |
+| `DJANGO_SECRET_KEY must be set` | Set a real secret when `DEBUG=false` |
+| `image_url: ""` | Cloudinary vars missing, or project saved without an image |
 
-## Cloudinary Setup (Brief)
+</details>
 
-1) Create a Cloudinary account and a new cloud.
-2) Copy the credentials from the Cloudinary dashboard:
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
-3) Add those values to:
-- `backend/.env` for local development
-- Your backend host environment variables for production
-4) Test an image upload by creating or updating a Project in Django Admin.
+## 📬 Contact
 
-## Deployment Notes
+Built by **Ronak Maniya** — [GitHub](https://github.com/ronakmaniya) ·
+[LinkedIn](https://www.linkedin.com/in/ronak-maniya/) ·
+[ronakmaniya2005@gmail.com](mailto:ronakmaniya2005@gmail.com)
 
-- Frontend: Vercel or Netlify
-- Backend: Render or Railway
-- Configure environment variables in your hosting platform
-
-## Deployment Steps (Brief)
-
-1) Backend (Render/Railway)
-- Copy variables from `backend/.env.example` into your hosting provider
-- Build command: `bash build.sh` (runs `pip install`, `collectstatic`, `migrate`)
-- Start command: `gunicorn core.wsgi` (matches `backend/Procfile`)
-- Create admin user once after deploy: `python manage.py createsuperuser`
-
-2) Frontend (Vercel/Netlify)
-- Copy variables from `frontend/.env.example` into your hosting provider
-- Set `VITE_API_BASE_URL` to the deployed backend URL
-- Build command: `npm run build`
-- Output directory: `dist` (SPA routing handled by `frontend/vercel.json`)
-
-3) Final checks
-- Update `DJANGO_ALLOWED_HOSTS` and `DJANGO_CORS_ALLOWED_ORIGINS`
-- Verify API endpoints and image uploads work
-
-## Scripts
-
-Frontend:
-- `npm run dev`
-- `npm run build`
-- `npm run preview`
-- `npm run lint`
-
-Backend:
-- `python manage.py runserver`
-- `python manage.py migrate`
-- `python manage.py createsuperuser`
-
-## License
-
-This project is intended for personal portfolio use.
+_Personal portfolio project — feel free to fork for inspiration._

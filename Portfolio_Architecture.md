@@ -1,525 +1,106 @@
-# 🧩 FULL-STACK PORTFOLIO + INTEGRATED BLOG SYSTEM
+<div align="center">
 
-## 🎯 OBJECTIVE
+# 🏗️ Portfolio Architecture
 
-Build a **developer portfolio website with an integrated blog system** from scratch.
+_Design doc for [My-Portfolio-Ronak-2.0](https://github.com/ronakmaniya/My-Portfolio-Ronak-2.0) —
+how the portfolio, blog, projects, and contact systems fit together._
 
-- Frontend: React (Vite)
-- Backend: Django + Django REST Framework
-- Database: SQLite (dev) → PostgreSQL (prod)
-- Blog system fully inside project (`/blog` route)
-- Admin-controlled content via Django Admin
+**[✨ Live Demo](https://ronak-maniya.vercel.app/) · [🏠 Root README](./README.md) · [🎨 Frontend](./frontend/README.md) · [⚙️ Backend](./backend/README.md)**
 
----
-
-# 🏗️ SYSTEM ARCHITECTURE
-
-## High-Level Structure
-
-Frontend (React)
-
-- Portfolio Pages
-- Blog UI
-- Projects UI (dynamic)
-- Static Content (JSON-based)
-- API Integration
-
-Backend (Django)
-
-- Blog CMS (Post model)
-- Contact/Feedback System
-- Projects System (like CMS)
-- REST API
-- Admin panel
-
-Database
-
-- Stores blog posts
-- Stores contact messages
-- Stores projects
+</div>
 
 ---
 
-# ⚖️ CONTENT STRATEGY (VERY IMPORTANT)
+## 🎯 Goal
 
-## 🎯 HYBRID APPROACH
+A developer portfolio with an integrated blog, built from scratch:
 
----
+- **Frontend** — React 19 + Vite SPA (`/`, `/about`, `/projects`, `/blog`, `/blog/:slug`, `/contact`)
+- **Backend** — Django 6 + DRF API (`/api/posts/`, `/api/projects/`, `/api/contact/`)
+- **Database** — SQLite locally, PostgreSQL in prod via `DATABASE_URL`
+- **CMS** — Django Admin only; no custom admin panel
 
-## 1. STATIC CONTENT (JSON-BASED)
+## 🔀 System overview
 
-👉 Stored in frontend as JSON files  
-👉 Rarely changes  
-👉 No backend required  
-
-### Used For:
-
-- Intro / Hero section
-- Skills
-- About content
-- Basic personal info
-
----
-
-### 📁 Example JSON Structure
-
-frontend/src/data/siteData.json
-
-```json
-{
-  "name": "Your Name",
-  "title": "Full Stack Developer",
-  "intro": "I build scalable web apps",
-  "skills": ["React", "Django", "PostgreSQL"]
-}
+```mermaid
+flowchart TD
+    Visitor([Visitor]) --> UI[React SPA · Vercel]
+    Owner([Owner]) -->|Django Admin| API[Django + DRF · Render]
+    UI -->|GET posts · projects| API
+    UI -->|POST contact| API
+    API --> DB[(SQLite dev<br/>Postgres prod)]
+    API --> CDN[(Cloudinary CDN<br/>project images)]
 ```
 
----
+| Decision | Rationale |
+|---|---|
+| Separate `blog` / `contact` / `projects` apps | Each domain owns models → serializers → views → admin |
+| Public reads, `IsAdminUser` writes | Portfolio is public; only staff mutate or read the inbox |
+| Cloudinary for media, API returns `image_url` | No media volume needed on Render; CDN URLs drop into `<img>` |
+| JSON for static copy, DB+API for dynamic | Copy edits never need a backend deploy, and vice versa |
 
-### ✅ Advantages
+## 📦 Content strategy
 
-- No need to modify React code for content changes
-- Easy updates
-- Works like config system
-- Clean separation of content & logic
+**Static** (`frontend/src/data/siteData.json`) — hero, skills, experience, social.
+Edit JSON, rebuild frontend. No backend involved.
 
----
+**Dynamic** (database → API → Admin) — blog posts, projects, contact inbox.
+Edit in Admin, frontend picks it up. Never hardcode these in JSX.
 
-## 2. DYNAMIC CONTENT (BACKEND-DRIVEN)
+Fallback entries in `siteData.json` mirror the API shape (`image_url`, `slug`, `excerpt`)
+so the same components render live and offline data.
 
-👉 Managed via Django Admin  
-👉 Comes from API  
+## 📁 Structure
 
-### Includes:
+```text
+frontend/src/ → pages/ · components/ · services/api.js · data/siteData.json
+backend/      → core/ (settings, urls) · blog/ · projects/ · contact/
+```
 
-- Blog ✅
-- Contact form ✅
-- Projects ✅
+```
+/ → landing · /admin/ → Admin · /api/posts/ · /api/projects/ · /api/contact/
+```
 
----
+## 🔌 API contracts
 
-# 📁 PROJECT STRUCTURE (FINAL)
+```text
+GET /api/posts/                  → { categories: [{ name, slug, posts: [{ title, slug, excerpt, created_at }] }] }
+GET /api/posts/<slug>/           → { title, slug, excerpt, content (Markdown), created_at, category }
+GET /api/projects/               → [{ title, tag, description, tech_stack, links, image_url, featured, display_order }]
+POST /api/projects/              → admin only
+POST /api/contact/               → { name, email, message } → 201
+GET /api/contact/submissions/    → admin only
+```
 
-project_root/
+Blog reads are published-only, newest first (`prefetch_related` / `select_related`);
+projects order by `display_order`, then newest. Full examples → [backend README](./backend/README.md#api-reference).
 
----
+## 🗃️ Data model
 
-## Backend (Django)
+```text
+Category (name, slug) ──< Post (title, slug, excerpt→auto, content, is_published, timestamps)
+Project (title, tag, description, tech_stack[], links, image→Cloudinary, featured, display_order)
+ContactMessage (name, email, message, created_at) — newest-first inbox
+```
 
-- backend/
-  - blog/                ← handles blog only
+## 🖥️ Frontend notes
 
-    - models.py
-    - views.py
-    - serializers.py
-    - urls.py
+- `services/api.js` is the only HTTP layer (base URL + fallback flag + 4 helpers)
+- Theme via `data-theme` + `localStorage`, initialized from OS preference
+- Every API section: **live → fallback** (if enabled) **→ inline error**
+- Tailwind v4 tokens + shared `.btn` / `.card` / `.markdown-content` styles
 
-  - contact/             ← feedback system
+## ☁️ Deployment
 
-    - models.py
-    - views.py
-    - serializers.py
-    - urls.py
+```text
+Vercel: frontend/ · npm run build → dist/ · vercel.json SPA rewrite · VITE_API_BASE_URL = prod backend
+Render: backend/  · bash build.sh → gunicorn core.wsgi · DEBUG=false · DATABASE_URL · Cloudinary vars
+```
 
-  - projects/            ← projects system
+## ✅ Non-goals & success criteria
 
-    - models.py
-    - views.py
-    - serializers.py
-    - urls.py
+Don't: hardcode dynamic content · mix JSON/API shapes · build a custom admin · add JWT (session + `IsAdminUser` suffices).
 
-  - core/
-
-  - manage.py
-
-👉 **IMPORTANT DECISION:**
-
-- Blog, Contact, Projects = **separate apps**
-- Clean, scalable architecture
-
----
-
-## Frontend (React)
-
-frontend/
-
-- src/
-  - pages/
-    - Home.jsx
-    - About.jsx
-    - Projects.jsx
-    - BlogList.jsx
-    - BlogDetail.jsx
-    - Contact.jsx
-  - components/
-    - Navbar.jsx
-    - Footer.jsx
-    - BlogCard.jsx
-    - ProjectCard.jsx
-  - services/
-    - api.js
-  - data/
-    - siteData.json   ← static content
-
----
-
-# 🚀 PHASE 1: BACKEND SETUP
-
-## 1. Install Dependencies
-
-pip install django djangorestframework django-cors-headers
-
----
-
-# 📝 BLOG SYSTEM (WITH CATEGORY)
-
-## Blog Model (blog app)
-
-- title: string
-- slug: unique
-- content: text (Markdown)
-- created_at: datetime
-
----
-
-## Category Model
-
-- name: string
-- slug: unique
-
----
-
-## Post Model Update
-
-- category: ForeignKey(Category, on_delete=CASCADE, related_name="posts")
-
----
-
-## Blog Serializer
-
-- title
-- slug
-- content
-- created_at
-- category
-
----
-
-## Category Serializer
-
-- name
-- slug
-
----
-
-## Blog API
-
-GET /api/posts/
-→ Return posts grouped by category
-
-### Example Response:
-
-{
-  "categories": [
-    {
-      "name": "Django",
-      "slug": "django",
-      "posts": [
-        { "title": "...", "slug": "..." }
-      ]
-    }
-  ]
-}
-
-GET /api/posts/<slug>/
-→ Single blog
-
-POST /api/posts/
-→ Admin only
-
----
-
-## Blog Admin
-
-- Register Post model
-- Register Category model
-- Assign category to posts
-
----
-
-# 📬 CONTACT SYSTEM
-
-## Contact Model (contact app)
-
-- name
-- email
-- message
-- created_at
-
----
-
-## Contact Serializer
-
-- name
-- email
-- message
-
----
-
-## Contact API
-
-POST /api/contact/
-
-Behavior:
-
-- Validate fields
-- Save to database
-- Return success
-
----
-
-## Contact Admin
-
-- Register model
-- View submissions
-
----
-
-# 🚀 PROJECTS SYSTEM
-
-## Projects Model (projects app)
-
-- title
-- description
-- tech_stack (JSONField or Text)
-- github_link
-- live_link
-- image
-- created_at
-
-👉 Flat list (no category)
-
-### Project Images (Hosting Strategy)
-
-- Use the `image` field in the Project model
-- Images are uploaded in Django Admin and stored in Cloudinary
-- Backend returns the CDN URL in the API response
-
----
-
-## Projects Serializer
-
-- title
-- description
-- tech_stack
-- github_link
-- live_link
-- image
-- created_at
-
----
-
-## Projects API
-
-GET /api/projects/
-→ Returns all projects (latest first)
-
-POST /api/projects/
-→ Admin only
-
----
-
-## Projects Admin
-
-- Register Project model
-- Add/edit/delete projects
-
----
-
-# 🎨 PHASE 2: FRONTEND SETUP
-
-## Static JSON Usage
-
-import siteData from "../data/siteData.json";
-
-Use for:
-
-- Home page
-- About section
-- Skills
-
----
-
-## Blog List Page
-
-Features:
-
-- Fetch /api/posts/
-- Display category-wise blogs
-
----
-
-## Blog Detail Page
-
-Features:
-
-- Fetch by slug
-- Render Markdown using react-markdown
-
----
-
-## Projects Page
-
-Route:
-/projects
-
-Features:
-
-- Fetch /api/projects/
-- Display projects dynamically
-
----
-
-## Contact Page
-
-Route:
-/contact
-
-Fields:
-
-- Name
-- Email
-- Message
-
----
-
-## API Integration
-
-- fetchPosts()
-- fetchPostBySlug(slug)
-- fetchProjects()
-- sendContactForm(data)
-
----
-
-## Contact Form Logic
-
-- Controlled inputs
-- POST request
-- Loading state
-- Success message
-- Error handling
-
----
-
-# 🧠 PHASE 3: PORTFOLIO FEATURES
-
-## Sections
-
-Home:
-
-- Intro (JSON)
-- Skills (JSON)
-- Latest blogs (API)
-- Featured projects (API)
-
-Projects:
-
-- Fully dynamic (API-based)
-
-Blog:
-
-- Category-based system
-
-Contact:
-
-- Contact form + social links
-
----
-
-# ⚡ PHASE 4: BLOG ENHANCEMENTS
-
-- Markdown support
-- Syntax highlighting
-- Reading time
-- Category filtering UI
-- Pagination
-
----
-
-# 🔍 SEO BASICS
-
-- Dynamic title
-- Meta description
-- Clean slug URLs
-
-Example:
-
-yourdomain.com/blog/how-to-deploy-django
-
----
-
-# 🔐 AUTHENTICATION (OPTIONAL)
-
-Use Django Admin for:
-
-- Blog posts
-- Projects
-- Contact messages
-
----
-
-# 🚀 DEPLOYMENT STRATEGY
-
-Frontend → Netlify / Vercel  
-Backend → Render / Railway  
-
-Structure:
-
-- yourname.com → frontend  
-- API hosted separately  
-
----
-
-# ⚠️ DO NOT DO
-
-- Do NOT hardcode dynamic content
-- Do NOT mix JSON + API incorrectly
-- Do NOT overcomplicate admin
-- Do NOT build custom admin panel
-
----
-
-# ✅ FINAL EXPECTED OUTPUT
-
-✔ Static content via JSON  
-✔ Blog system (category-based)  
-✔ Projects system (dynamic)  
-✔ Contact system (dynamic)  
-✔ Clean architecture  
-✔ Scalable structure  
-
----
-
-# 💡 DEVELOPMENT STRATEGY
-
-Step 1: Backend APIs (blog + contact + projects)  
-Step 2: Static JSON setup  
-Step 3: Frontend UI  
-Step 4: API integration  
-Step 5: Polish UI  
-
----
-
-# 🧪 SUCCESS CRITERIA
-
-- Static content loads from JSON  
-- Blog works with categories  
-- Projects load from API  
-- Contact form works  
-- Clean UI  
-- No broken routes or APIs  
-
----
-
-END OF SPEC
+Done when: static sections render without a backend · `/blog` groups by category · `/projects`
+shows ordered Cloudinary images · `/contact` persists to the Admin inbox · theme persists ·
+no broken routes · prod is CORS-clean with staff-gated writes.

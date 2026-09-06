@@ -1,78 +1,106 @@
-# Frontend (React + Vite)
+<div align="center">
 
-Frontend for the portfolio + blog system. Built with React and Vite.
+# 🎨 Frontend — Portfolio SPA
 
-## Requirements
+_React + Vite single-page app for [My-Portfolio-Ronak-2.0](https://github.com/ronakmaniya/My-Portfolio-Ronak-2.0)._
 
-- Node.js 18+ (recommended)
-- npm
+[![Live](https://img.shields.io/badge/Live-Vercel-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](https://ronak-maniya.vercel.app/)
 
-## Install dependencies
+![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)
+![Router](https://img.shields.io/badge/Router_7-CA4245?logo=reactrouter&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_v4-38BDF8?logo=tailwindcss&logoColor=white)
 
-```bash
-npm install
-```
+**[🏠 Root README](../README.md) · [🏗️ Architecture](../Portfolio_Architecture.md) · [⚙️ Backend](../backend/README.md)**
 
-## Run the dev server
+</div>
 
-```bash
-npm run dev
-```
+---
 
-Vite will print the local URL (usually http://localhost:5173).
+## ✨ What it does
 
-## Environment variables
+- 🖥️ Pages: Home, About, Projects, Blog list/detail, Contact, 404
+- 📝 Blog with category groups, slug URLs, and Markdown rendering
+- 🚀 Projects grid + featured section fed by the API
+- 📬 Contact form wired to `POST /api/contact/`
+- 🌗 Light/dark theme, persisted, respects OS preference
+- 📴 Optional offline fallback to `siteData.json`
 
-Create a `.env` file in this folder or copy `.env.example`.
+## 🚀 Quickstart
 
-Note: `.env` is for local development only and should not be committed. In production, set the same variables in your hosting platform.
-
-- `VITE_API_BASE_URL` - Django API base URL (default http://127.0.0.1:8000).
-- `VITE_ENABLE_FALLBACK` - When `true`, use local `siteData.json` as a fallback if the API is unreachable.
-
-## Production build
+Requires **Node 18+**. Point it at the backend (default `http://127.0.0.1:8000`).
 
 ```bash
-npm run build
+cd frontend && cp .env.example .env && npm install && npm run dev
+# → http://localhost:5173
 ```
 
-## Preview production build
+| Script | Purpose |
+|---|---|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build → `dist/` |
+| `npm run preview` | Preview the build |
+| `npm run lint` | ESLint |
 
-```bash
-npm run preview
+## 🔧 Environment variables
+
+Local-only `.env` (never commit; mirror in Vercel). `VITE_*` bake in at build time — rebuild after changes.
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `VITE_API_BASE_URL` | `http://127.0.0.1:8000` | Backend origin (`/api` appended in code) |
+| `VITE_ENABLE_FALLBACK` | `false` | `true` → use `siteData.json` when the API fails |
+
+## 🗺️ Routes
+
+| Route | Data |
+|---|---|
+| `/` Home | JSON copy + featured projects + latest 3 posts |
+| `/about` | Experience / education from JSON |
+| `/projects` | Full list from `GET /api/projects/` |
+| `/blog` | `GET /api/posts/` grouped by category |
+| `/blog/:slug` | `GET /api/posts/:slug/`, Markdown body |
+| `/contact` | Form → `POST /api/contact/` |
+
+## 🔌 API layer
+
+All HTTP lives in `src/services/api.js` — pages never hardcode URLs:
+
+```js
+fetchProjects()            // GET /api/projects/
+fetchPostsByCategory()     // GET /api/posts/ → { categories: [...] }
+fetchPostBySlug(slug)      // GET /api/posts/{slug}/
+submitContact({ name, email, message })  // POST /api/contact/
 ```
 
-## Tailwind CSS v4 setup checklist
+Static copy (`name`, `skills`, `experience`, …) is edited in `src/data/siteData.json` only —
+no component changes needed. Fallback entries mirror the API shape (`image_url`, `slug`, `excerpt`).
 
-- Install Tailwind v4 + Vite plugin: `npm install -D tailwindcss @tailwindcss/vite`
-- Add the Vite plugin in `vite.config.js`:
-	- `import tailwindcss from '@tailwindcss/vite'`
-	- `plugins: [react(), tailwindcss()]`
-- Ensure `src/index.css` includes Tailwind:
-	- `@import "tailwindcss";`
-- Optional config file (only if you need theme extensions):
-	- Create `tailwind.config.js`
-	- Add `@config "./tailwind.config.js";` to `src/index.css`
-- Ensure `src/main.jsx` imports `./index.css`
-- Run `npm run dev`
+## 📁 Structure
 
-## Data sources
+```text
+src/
+├── pages/          Home, About, Projects, BlogList, BlogDetail, Contact, NotFound
+├── components/     Navbar (theme toggle), Footer
+├── services/api.js API base + fallback flag + 4 helpers
+├── data/siteData.json  static content + fallback data
+├── App.jsx         routes, theme, scroll restoration
+└── index.css       Tailwind v4 + theme tokens
+```
 
-- Primary site data: `src/data/siteData.json`
-- API data is fetched from the Django backend (see backend README)
+## ☁️ Deploy
 
-## Fallback behavior
+Vercel: root `frontend/`, build `npm run build`, output `dist/`
+(`vercel.json` handles SPA rewrites). Set `VITE_API_BASE_URL` to the prod backend.
 
-When `VITE_ENABLE_FALLBACK=true`, the UI uses:
+<details>
+<summary><strong>🔧 Troubleshooting</strong></summary>
 
-- `featuredProjects` and `blogPosts` from `siteData.json` if the API is unreachable
-- markdown rendering via `react-markdown` + `remark-gfm`
+| Symptom | Fix |
+|---|---|
+| Empty sections / fallback | Wrong `VITE_API_BASE_URL` or backend cold-starting — check Network tab |
+| Env change ignored | Restart dev; rebuild/redeploy for prod (Vite inlines `VITE_*`) |
+| Styles missing | `main.jsx` must import `./index.css`; Tailwind Vite plugin registered |
+| 404 on refresh (prod) | Missing SPA rewrite — ensure `vercel.json` is deployed |
 
-Note: Fallback `featuredProjects` include `image_url` to match the API response shape. Leave it empty if you want placeholders during fallback mode.
-
-## API usage
-
-- `GET /api/projects/`
-- `GET /api/posts/`
-- `GET /api/posts/<slug>/`
-- `POST /api/contact/`
+</details>
